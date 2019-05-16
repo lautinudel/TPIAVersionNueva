@@ -1,22 +1,21 @@
 package search;
 
+import domain.Celda;
+import domain.Coordenadas;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 
 public class AgentedeComprasPerception extends Perception {
-
-	//TODO: Setup Statics
-    //public static int UNKNOWN_PERCEPTION = -1;   
-	
-	
-	//TODO: Setup Sensors
-	private int estadocelda;
+    
+	public static Celda UNKNOWN_PERCEPTION ;   
+	private Celda estadocelda;
 	
  
 
     public  AgentedeComprasPerception() {
-    	//TODO: Complete Method
+    	UNKNOWN_PERCEPTION = new Celda(false,false,false,false);
+    	estadocelda = UNKNOWN_PERCEPTION;
     }
 
     public AgentedeComprasPerception(Agent agent, Environment environment) {
@@ -31,11 +30,20 @@ public class AgentedeComprasPerception extends Perception {
     	
     	//TODO: Complete Method
         
-        //AgentedeCompras agent = (AgentedeCompras) agentIn;
-        //Ambiente environment = (Ambiente) environmentIn;
-        //EstadoAmbiente environmentState =
-        //        environment.getEnvironmentState();
-       
+        AgentedeCompras agent = (AgentedeCompras) agentIn;
+        Ambiente environment = (Ambiente) environmentIn;
+        EstadoAmbiente environmentState = environment.getEnvironmentState();
+        
+        //Aquí creamos la percepción inicial del agente
+        //Pimero chequeamos que la ubicación no sea la de un supermercado
+        Coordenadas posAgente = environmentState.getposAgente();
+        boolean esSupermercado = false;
+        
+        /*for (int i = 0; i<agent.getAgentState().getlistaLugaresVisitados().size();i++) {
+        	if (posAgente.equals(agent.getAgentState().getlistaLugaresVisitados().get(i).getCoordenadas())) {
+        		esSupermercado = true;
+        	}
+        }*/
         
     }
     
@@ -51,10 +59,10 @@ public class AgentedeComprasPerception extends Perception {
     // The following methods are agent-specific:
     //TODO: Complete this section with the agent-specific methods
 	
-     public int getestadocelda(){
+     public Celda getestadocelda(){
         return estadocelda;
      }
-     public void setestadocelda(int arg){
+     public void setestadocelda(Celda arg){
         this.estadocelda = arg;
      }
 	

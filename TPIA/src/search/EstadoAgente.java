@@ -1,5 +1,9 @@
 package search;
 
+import java.util.ArrayList;
+
+import domain.Coordenadas;
+import domain.TipoVehiculo;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
@@ -8,24 +12,24 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
  */
 public class EstadoAgente extends SearchBasedAgentState {
 	
-	//TODO: Setup Variables
-    //private Other posActual;
-    //private Other listaProductos;
-    private int[][] matrizCostosP;
-    //private Other listaLugaresVisitados;
-    //private Other tipoVehiculo;
+    private Coordenadas posActual;
+    private ArrayList<String> listaProductos;
+    private int[][] matrizCostosP = {{5,20,-1,80,-1,40,-1,-1,-1},
+	 									{10,-1,-1,-1,5,40,-1,-1,35},
+	 									{12,-1,10,-1,15,-1,10,10,-1}};;
+    private ArrayList<Coordenadas> listaLugaresVisitados;
+    private TipoVehiculo tipoVehiculo;
 	
 
     public EstadoAgente() {
     
     	//TODO: Complete Method
-    	/*
+    	
 			// posActual = initData0;
 			// listaProductos = initData1;
-			// matrizCostosP = initData2;
 			// listaLugaresVisitados = initData3;
 			// tipoVehiculo = initData4;
-        */
+      
         this.initState();
     }
 
@@ -88,36 +92,36 @@ public class EstadoAgente extends SearchBasedAgentState {
     //TODO: Complete this section with agent-specific methods
     // The following methods are agent-specific:
    	
-//     public Other getposActual(){
-//        return posActual;
-//     }
-//     public void setposActual(Other arg){
-//        posActual = arg;
-//     }
-//     public Other getlistaProductos(){
-//        return listaProductos;
-//     }
-//     public void setlistaProductos(Other arg){
-//        listaProductos = arg;
-//     }
+     public Coordenadas getposActual(){
+       return posActual;
+    }
+     public void setposActual(Coordenadas arg){
+        posActual = arg;
+     }
+     public ArrayList<String> getlistaProductos(){
+        return listaProductos;
+     }
+     public void setlistaProductos(ArrayList<String> arg){
+        listaProductos = arg;
+     }
      public int[][] getmatrizCostosP(){
         return matrizCostosP;
      }
      public void setmatrizCostosP(int[][] arg){
         matrizCostosP = arg;
      }
-//     public Other getlistaLugaresVisitados(){
-//        return listaLugaresVisitados;
-//     }
-//     public void setlistaLugaresVisitados(Other arg){
-//        listaLugaresVisitados = arg;
-//     }
-//     public Other gettipoVehiculo(){
-//        return tipoVehiculo;
-//     }
-//     public void settipoVehiculo(Other arg){
-//        tipoVehiculo = arg;
-//     }
+     public ArrayList<Coordenadas> getlistaLugaresVisitados(){
+        return listaLugaresVisitados;
+     }
+     public void setlistaLugaresVisitados(ArrayList<Coordenadas> arg){
+        listaLugaresVisitados = arg;
+     }
+     public TipoVehiculo gettipoVehiculo(){
+       return tipoVehiculo;
+     }
+    public void settipoVehiculo(TipoVehiculo arg){
+       tipoVehiculo = arg;
+     }
 	
 }
 

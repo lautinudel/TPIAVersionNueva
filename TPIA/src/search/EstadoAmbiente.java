@@ -1,5 +1,10 @@
 package search;
 
+import java.util.ArrayList;
+
+import domain.Celda;
+import domain.Coordenadas;
+import domain.Supermercado;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 /**
@@ -7,27 +12,36 @@ import frsf.cidisi.faia.state.EnvironmentState;
  */
 public class EstadoAmbiente extends EnvironmentState {
 	
-	//TODO: Setup Variables
-    //private Other posAgente;
-    private int[][] matrizMapa;
+	
+    private Coordenadas posAgente;
+    private Celda[][] matrizMapa;
+    private ArrayList <Supermercado> listaDeSupermercados;
 	
     public EstadoAmbiente() {
         
-        //TODO: Complete Method
-    	/*
-			// posAgente = initData0;
-			// matrizMapa = initData1;
-        */
+        
+			 posAgente = new Coordenadas();
+			 matrizMapa = new Celda[17][11];
+			 listaDeSupermercados = new ArrayList <Supermercado>();
+        
         this.initState();
     }
 
-    /**
+    public ArrayList<Supermercado> getListaDeSupermercados() {
+		return listaDeSupermercados;
+	}
+
+	public void setListaDeSupermercados(ArrayList<Supermercado> listaDeSupermercados) {
+		this.listaDeSupermercados = listaDeSupermercados;
+	}
+
+	/**
      * This method is used to setup the initial real world.
      */
     @Override
     public void initState() {
 
-        //TODO: Complete Method
+        //COMPLETAR CON INICIALIZACION
     }
 
     /**
@@ -37,24 +51,25 @@ public class EstadoAmbiente extends EnvironmentState {
     public String toString() {
         String str = "";
 
-        //TODO: Complete Method
+        str += "Posición del agente: ";
+        str += getposAgente().toString(); 
+        str += "}\n";
+        
 
         return str;
     }
 
-	//TODO: Complete this section with agent-specific methods
-    // The following methods are agent-specific:
 	
-//     public Other getposAgente(){
-//        return posAgente;
-//     }
-//     public void setposAgente(Other arg){
-//        posAgente = arg;
-//     }
-     public int[][] getmatrizMapa(){
+     public Coordenadas getposAgente(){
+        return posAgente;
+     }
+     public void setposAgente(Coordenadas arg){
+       posAgente = arg;
+     }
+     public Celda[][] getmatrizMapa(){
         return matrizMapa;
      }
-     public void setmatrizMapa(int[][] arg){
+     public void setmatrizMapa(Celda[][] arg){
         matrizMapa = arg;
      }
 	

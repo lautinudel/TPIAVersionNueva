@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import java.util.Vector;
 
 public class AgentedeCompras extends SearchBasedAgent {
+	
 
     public AgentedeCompras() {
 

@@ -1,0 +1,65 @@
+package search;
+
+import domain.Celda;
+import domain.Coordenadas;
+import frsf.cidisi.faia.state.EnvironmentState;
+
+/**
+ * This class represents the real world state.
+ */
+public class EstadoAmbiente extends EnvironmentState {
+	
+	
+    private Coordenadas posAgente;
+    private Celda[][] matrizMapa;
+	
+    public EstadoAmbiente() {
+        
+        
+			 posAgente = new Coordenadas();
+			 matrizMapa = new Celda[17][11];
+        
+        this.initState();
+    }
+
+    /**
+     * This method is used to setup the initial real world.
+     */
+    @Override
+    public void initState() {
+
+        //COMPLETAR CON INICIALIZACION
+    }
+
+    /**
+     * String representation of the real world state.
+     */
+    @Override
+    public String toString() {
+        String str = "";
+
+        str += "Posición del agente: ";
+        str += getposAgente().toString(); 
+        str += "}\n";
+        
+
+        return str;
+    }
+
+	
+     public Coordenadas getposAgente(){
+        return posAgente;
+     }
+     public void setposAgente(Coordenadas arg){
+       posAgente = arg;
+     }
+     public Celda[][] getmatrizMapa(){
+        return matrizMapa;
+     }
+     public void setmatrizMapa(Celda[][] arg){
+        matrizMapa = arg;
+     }
+	
+
+}
+

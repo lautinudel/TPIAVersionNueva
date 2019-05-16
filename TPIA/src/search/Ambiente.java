@@ -1,11 +1,15 @@
 package search;
 
+import domain.Coordenadas;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+import sun.management.resources.agent;
 
 public class Ambiente extends Environment {
-
+	
+	
+	
     public Ambiente() {
         // Create the environment state
         this.environmentState = new EstadoAmbiente();
@@ -26,8 +30,24 @@ public class Ambiente extends Environment {
         // Create a new perception to return
          AgentedeComprasPerception perception = new AgentedeComprasPerception();
 		
-		//TODO : Set the perceptions sensors
-        
+         //Pimero chequeamos que la habitación en la que está el agente está sucia
+         
+         Coordenadas c = this.getEnvironmentState().getposAgente();
+         boolean esSupermercado = false;
+         
+         
+         for (int i = 0; i<this.getEnvironmentState().getListaDeSupermercados().size();i++) {
+         	if (c.equals(this.getEnvironmentState().getListaDeSupermercados().get(i).getUbicacion())) {
+         		esSupermercado = true;
+         	}
+         }
+         
+         //Si lo está, el valor de la percepción será 1; en caso contrario será 0
+         /*if(esSupermercado)
+         	perception.setestadocelda(arg);
+         else
+         	perception.setsuciedad(0);*/
+      
         // Return the perception
         return perception;
     }
