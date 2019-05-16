@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idemia:AgentModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:idemia="utn.frsf.cidisi">
+  <Environment name="Ambiente">
+    <EnvironmentState name="EstadoAmbiente">
+      <DataStructure name="matrizCaminos" type="matrix"/>
+      <DataStructure name="infoProductos" type="matrix"/>
+      <DataStructure name="infoCaminos" type="matrix"/>
+    </EnvironmentState>
+  </Environment>
+  <Agent name="AgentedeCompras">
+    <Strategy xsi:type="idemia:Search"/>
+    <Goal name="ObjetivoAgente" value="listaProductos = {}"/>
+    <AgentState name="EstadoAgente">
+      <DataStructure name="posActual"/>
+      <DataStructure name="listaProductos" type="matrix"/>
+      <DataStructure name="matrizCostosP" type="matrix"/>
+      <DataStructure name="matrizCostosT" type="matrix"/>
+      <DataStructure name="listaLugaresAVisitar" type="matrix"/>
+      <DataStructure name="matrizRuta" type="matrix"/>
+    </AgentState>
+  </Agent>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="AvanzarArriba"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="AvanzarIzquierda"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="AvanzarDerecha"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="AvanzarAbajo"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="Comprar"/>
+  <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="modificaciondelcamino"/>
+  <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="modificaciondelcomercio"/>
+</idemia:AgentModel>

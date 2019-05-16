@@ -1,0 +1,8 @@
+INDEX VERSION 1.131+C:\Users\L. Nudel\Documents\Proyectos eclipse\.metadata\.plugins\org.eclipse.jdt.core
+3223571881.index
+863168216.index
+566272483.index
+3792919871.index
+4146874359.index
+1378596335.index
+898289412.index
