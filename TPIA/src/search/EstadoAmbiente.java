@@ -15,12 +15,12 @@ public class EstadoAmbiente extends EnvironmentState {
 	
     private Coordenadas posAgente;
     private Celda[][] matrizMapa;
-    private ArrayList <Supermercado> listaDeSupermercados;
+    //private ArrayList <Supermercado> listaDeSupermercados;
 	
     public EstadoAmbiente() {
 			 posAgente = new Coordenadas();
 			 matrizMapa = new Celda[17][11];
-			 listaDeSupermercados = new ArrayList <Supermercado>();
+			 //listaDeSupermercados = new ArrayList <Supermercado>();
         
         this.initState();
     }
@@ -66,13 +66,13 @@ public class EstadoAmbiente extends EnvironmentState {
      public void setmatrizMapa(Celda[][] arg){
         matrizMapa = arg;
      }
-     public ArrayList<Supermercado> getListaDeSupermercados() {
+     /*public ArrayList<Supermercado> getListaDeSupermercados() {
  		return listaDeSupermercados;
  	}
 
  	public void setListaDeSupermercados(ArrayList<Supermercado> listaDeSupermercados) {
  		this.listaDeSupermercados = listaDeSupermercados;
- 	}
+ 	}*/
 	
 
 }

@@ -1,5 +1,6 @@
 package search;
 
+
 import frsf.cidisi.faia.solver.search.IEstimatedCostFunction;
 import frsf.cidisi.faia.solver.search.NTree;
 
@@ -15,9 +16,9 @@ public class Heuristic implements IEstimatedCostFunction {
     @Override
     public double getEstimatedCost(NTree node) {
         EstadoAgente agState = (EstadoAgente) node.getAgentState();
-	
-		//Method: Complete Method
+    	
+		double listaProd = agState.getlistaProductos().size();
 		
-        return 0;
+        return listaProd;
     }
 }

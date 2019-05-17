@@ -1,12 +1,13 @@
 package search;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import domain.Coordenadas;
-import domain.Habitacion;
+import domain.Producto;
+import domain.Supermercado;
 import domain.TipoVehiculo;
-import frsf.cidisi.exercise.aspiradora.search.EstadoAspiradora;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
@@ -17,10 +18,11 @@ public class EstadoAgente extends SearchBasedAgentState {
 	
     private Coordenadas posActual;
     private ArrayList<String> listaProductos;
-    private int[][] matrizCostosP = {{5,20,-1,80,-1,40,-1,-1,-1},
+    /*private int[][] matrizCostosP = {{5,20,-1,80,-1,40,-1,-1,-1},
 	 									{10,-1,-1,-1,5,40,-1,-1,35},
-	 									{12,-1,10,-1,15,-1,10,10,-1}};;
-    private ArrayList<Coordenadas> listaLugaresVisitados;
+	 									{12,-1,10,-1,15,-1,10,10,-1}};*/
+    private ArrayList<Supermercado> supermercadosDisponibles;
+    private int costoAcumulado;
     private TipoVehiculo tipoVehiculo;
 	
 
@@ -28,10 +30,12 @@ public class EstadoAgente extends SearchBasedAgentState {
     
     	//TODO: Complete Method
     	
-			// posActual = initData0;
-			// listaProductos = initData1;
-			// listaLugaresVisitados = initData3;
-			// tipoVehiculo = initData4;
+			 posActual = new Coordenadas();
+			// listaProductos = new ArrayList<String>();
+			 supermercadosDisponibles = new ArrayList<Supermercado>();
+			 costoAcumulado=0;
+			 tipoVehiculo = TipoVehiculo.AUTO;
+			
       
         this.initState();
     }
@@ -45,35 +49,46 @@ public class EstadoAgente extends SearchBasedAgentState {
         
     	EstadoAgente newState = new EstadoAgente();
     	
-    	//Los atributos de tipo primitvos se pasan por copia
-    	//newState.setenergiaDisponible(this.getenergiaDisponible());
+    	newState.setposActual(this.posActual.clone());
     	
-		//Los atributos que son objetos (los arrays también son de tipo objeto) se pasan por
-    	//referencia; luego, es necesario clonarlos
-    	List<Habitacion> newMapaHabitaciones = new ArrayList<Habitacion>();
-    	for(Habitacion h : this.getmapaHabitaciones())
-    		newMapaHabitaciones.add(h.clone());
-    	newState.setmapaHabitaciones(newMapaHabitaciones);
+    	ArrayList<String> newListaProductos = new ArrayList<String>();
+    	for(String s : this.getlistaProductos()) {
+    		String aux = s;
+    		newListaProductos.add(aux);
+    	}
+    	newState.setlistaProductos(newListaProductos);
     	
-    	//Buscamos en el nuevo mapa las habitaciones sucias para agregarlas a la nueva lista
-    	//de habitaciones sucias
-    	List<Habitacion> newHabitacionesSucias = new ArrayList<Habitacion>();
-    	for(Habitacion h : newMapaHabitaciones)
-    		for(Habitacion hs : this.gethabitacionesSucias())
-    			if(h.getNombre().equals(hs.getNombre()))
-    				newHabitacionesSucias.add(h);
-    	newState.sethabitacionesSucias(newHabitacionesSucias);
+    	ArrayList<Supermercado> newSupermercadosDisponibles = new ArrayList<Supermercado>();
+    	for(Supermercado s : this.getSupermercadosDisponibles()) {
+    		Supermercado aux = s;
+    		newSupermercadosDisponibles.add(aux);
+    	}
+    	newState.setSupermercadosDisponibles(newSupermercadosDisponibles);
     	
-    	//Este ultimo atributo (la posicion) ya se encuentra en la lista de habitaciones que
-    	//representa el mapa! Entonces debemos buscarlo en la lista (la NUEVA!)
-    	for(Habitacion h : newMapaHabitaciones)
-    		if(h.getNombre().equals(this.getposicion().getNombre()))
-    			newState.setposicion(h);
+    	
+    	/*int[][] newMatrizCostosP = {{0,0,0,0,0,0,0,0,0},
+    			{0,0,0,0,0,0,0,0,0},
+    			{0,0,0,0,0,0,0,0,0}};
+    	for(int i=0;i<this.getmatrizCostosP().length;i++) {
+    		for(int j=0; j<this.getmatrizCostosP()[i].length;j++) {
+    			newMatrizCostosP[i][j]=matrizCostosP[i][j];
+    		}
+    	}
+    	newState.setmatrizCostosP(newMatrizCostosP);*/
+    	
+    	newState.setCostoAcumulado(this.getCostoAcumulado());
+    	
+    	TipoVehiculo aux = this.gettipoVehiculo();
+    	newState.settipoVehiculo(aux);
+    	
+    	
     	
         return newState;
     }
 
-    /**
+    
+
+	/**
      * This method is used to update the Agent State when a Perception is
      * received by the Simulator.
      */
@@ -81,6 +96,34 @@ public class EstadoAgente extends SearchBasedAgentState {
     public void updateState(Perception p) {
         
         //TODO: Complete Method
+    	
+    	AgentedeComprasPerception percepcion = (AgentedeComprasPerception) p;
+    	
+    	boolean esSupermercado = percepcion.getEsSupermercado();
+    	
+    	
+    	
+    	if(esSupermercado) {//eliminar productos
+    		
+    		Supermercado superActual=null;
+    		//veo en que super estoy
+    		for(Supermercado s : this.getSupermercadosDisponibles()) {
+    			if(s.getUbicacion().equals(this.getposActual()))
+    				superActual = s;
+    		}
+    		
+    		ArrayList<String> auxProductos = new ArrayList<String>();
+        	auxProductos.addAll(this.getlistaProductos());
+    		for(String s: this.getlistaProductos()) {
+    			for(Producto prod : superActual.getProductosDisponibles()) {
+    				if(s.equals(prod.getNombre())) auxProductos.remove(s);
+    			}
+    		}
+    	}else {
+    		//se sigue moviendo
+    	}
+    	
+    	
     }
 
     /**
@@ -90,6 +133,8 @@ public class EstadoAgente extends SearchBasedAgentState {
     public void initState() {
         
 	//TODO: Complete Method
+    	
+    	//INICIALIZAR EL ESTADO DEL AGENTE
 
     }
 
@@ -113,8 +158,41 @@ public class EstadoAgente extends SearchBasedAgentState {
     public boolean equals(Object obj) {
        
        //TODO: Complete Method
+    	
+    	EstadoAgente e = (EstadoAgente) obj;
+    	
+    	boolean mismaPosicion = this.getposActual().equals(e.getposActual());
+    	boolean mismosProductos = true;
+    	mismosProductos = this.getlistaProductos().size() == e.getlistaProductos().size();
+    	if(mismosProductos) {
+    		String[] nombresActuales = getArrayOfNames(this.getlistaProductos());
+    		String[] nobresComparadas = getArrayOfNames(e.getlistaProductos());
+    		Arrays.sort(nombresActuales);
+    		Arrays.sort(nobresComparadas);
+    		for(int i=0;i<nombresActuales.length;i++)
+    			if(!(nombresActuales[i].equals(nobresComparadas[i])))
+    				mismosProductos = false;
+    	}
+    	boolean mismoTipoVehiculo = this.gettipoVehiculo() == e.gettipoVehiculo();
+    	boolean mismoCostoAcumulado = this.getCostoAcumulado() == e.getCostoAcumulado();
+    	
+    	boolean mismosSupermercados = true;
+    	mismosSupermercados = this.getSupermercadosDisponibles().size() == e.getSupermercadosDisponibles().size();
+    	if(mismosSupermercados) {
+    		String[] nombresActuales = getArrayOfNamesSuper(this.getSupermercadosDisponibles());
+    		String[] nobresComparadas = getArrayOfNamesSuper(e.getSupermercadosDisponibles());
+    		Arrays.sort(nombresActuales);
+    		Arrays.sort(nobresComparadas);
+    		for(int i=0;i<nombresActuales.length;i++)
+    			if(!(nombresActuales[i].equals(nobresComparadas[i])))
+    				mismosSupermercados = false;
+    	}
+    	
+    	return (mismaPosicion && mismoTipoVehiculo && mismoCostoAcumulado && mismosProductos && mismosSupermercados);
+       
         
-        return true;
+    	
+        
     }
 
     //TODO: Complete this section with agent-specific methods
@@ -126,30 +204,64 @@ public class EstadoAgente extends SearchBasedAgentState {
      public void setposActual(Coordenadas arg){
         posActual = arg;
      }
+     
+     public void setposActual(int fila, int columna){
+         posActual.setColumna(columna);
+         posActual.setFila(fila);
+      }
+     
+     
      public ArrayList<String> getlistaProductos(){
         return listaProductos;
      }
      public void setlistaProductos(ArrayList<String> arg){
         listaProductos = arg;
      }
-     public int[][] getmatrizCostosP(){
+     /*public int[][] getmatrizCostosP(){
         return matrizCostosP;
      }
      public void setmatrizCostosP(int[][] arg){
         matrizCostosP = arg;
-     }
-     public ArrayList<Coordenadas> getlistaLugaresVisitados(){
-        return listaLugaresVisitados;
-     }
-     public void setlistaLugaresVisitados(ArrayList<Coordenadas> arg){
-        listaLugaresVisitados = arg;
-     }
+     }*/
      public TipoVehiculo gettipoVehiculo(){
        return tipoVehiculo;
      }
     public void settipoVehiculo(TipoVehiculo arg){
        tipoVehiculo = arg;
      }
+    public void setCostoAcumulado(int arg) {
+    	this.costoAcumulado=arg;
+    }
+    public int getCostoAcumulado() {
+    	return this.costoAcumulado;
+    }
+
+	public ArrayList<Supermercado> getSupermercadosDisponibles() {
+		return supermercadosDisponibles;
+	}
+
+	public void setSupermercadosDisponibles(ArrayList<Supermercado> supermercadosDisponibles) {
+		this.supermercadosDisponibles = supermercadosDisponibles;
+	}
+	
+	private String[] getArrayOfNames(List<String> productos){
+   	 String[] arrayOfNames = new String[productos.size()];
+   	 
+   	 for(int i=0;i<productos.size();i++)
+   		 arrayOfNames[i] = productos.get(i);
+   	 
+   	 return arrayOfNames;
+    } 
+	private String[] getArrayOfNamesSuper(List<Supermercado> supermercados){
+	   	 String[] arrayOfNames = new String[supermercados.size()];
+	   	 
+	   	 for(int i=0;i<supermercados.size();i++)
+	   		 arrayOfNames[i] = supermercados.get(i).getNombre();
+	   	 
+	   	 return arrayOfNames;
+	    } 
+	
+	
 	
 }
 

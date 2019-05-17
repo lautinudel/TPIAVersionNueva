@@ -32,6 +32,13 @@ public class Coordenadas {
 		}
 	}
 	
+	public String toString() {
+		return "Posicion: ("+fila+","+columna+")";
+	}
 	
+	public Coordenadas clone() {
+		Coordenadas aux = new Coordenadas(this.fila,this.columna);
+		return aux;
+	}
 
 }

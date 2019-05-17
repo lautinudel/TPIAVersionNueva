@@ -2,6 +2,7 @@ package search;
 
 import domain.Celda;
 import domain.Coordenadas;
+import domain.Supermercado;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -11,13 +12,14 @@ public class AgentedeComprasPerception extends Perception {
 	//Setup statics
 	public static Celda UNKNOWN_PERCEPTION ;   
 	//Setup sensors
-	private Celda estadocelda;
-	
+	private Celda estadoCelda;
+	private boolean esSupermercado;
  
 
     public  AgentedeComprasPerception() {
     	UNKNOWN_PERCEPTION = new Celda(false,false,false,false);
-    	estadocelda = UNKNOWN_PERCEPTION;
+    	esSupermercado=false;
+    	estadoCelda = UNKNOWN_PERCEPTION;
     }
 
     public AgentedeComprasPerception(Agent agent, Environment environment) {
@@ -38,21 +40,29 @@ public class AgentedeComprasPerception extends Perception {
         //Pimero chequeamos que la ubicación inicial no sea la de un supermercado
         
         Coordenadas posAgente = environmentState.getposAgente();
-        boolean esSupermercado = false;
         
-        for (int i = 0; i<agent.getAgentState().getlistaLugaresVisitados().size();i++) {
-        	if (posAgente.equals(agent.getAgentState().getlistaLugaresVisitados().get(i).getCoordenadas())) {
-        		esSupermercado = true;
-        	}
-        }
+        estadoCelda = environmentState.getmatrizMapa()[posAgente.getFila()][posAgente.getColumna()];
+        
+        /*for(Supermercado s : environmentState.getListaDeSupermercados()) {
+        	if(posAgente.equals(s.getUbicacion())) esSupermercado=true;
+        }*/
+        
         
     }
     
     @Override
     public String toString() {
-        StringBuffer str = new StringBuffer();
+        String str = "";
 
         //TODO: Complete Method
+        str += "Estado de la celda: ";
+        str+= "Arriba: "+estadoCelda.getArriba();
+        str+= "Abajo: "+estadoCelda.getAbajo();
+        str+= "Derecha: "+estadoCelda.getDerecha();
+        str+= "Izquierda: "+estadoCelda.getIzquierda();
+       /* str += "Estoy en un supermercado: ";
+        str+=(esSupermercado==true)?"Si":"No";*/
+
 
         return str.toString();
     }
@@ -61,11 +71,17 @@ public class AgentedeComprasPerception extends Perception {
     //TODO: Complete this section with the agent-specific methods
 	
      public Celda getestadocelda(){
-        return estadocelda;
+        return estadoCelda;
      }
-     public void setestadocelda(Celda arg){
-        this.estadocelda = arg;
+     public void setestadoCelda(Celda arg){
+        this.estadoCelda = arg;
      }
-	
+     
+     public void setEsSupermercado(boolean arg) {
+    	 this.esSupermercado=arg;
+     }
+	public boolean getEsSupermercado() {
+		return this.esSupermercado;
+	}
    
 }

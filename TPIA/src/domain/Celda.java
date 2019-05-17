@@ -6,25 +6,25 @@ public class Celda {
 	 public boolean izquierda;
 	 public boolean derecha;
 	 
-	public boolean isArriba() {
+	public boolean getArriba() {
 		return arriba;
 	}
 	public void setArriba(boolean arriba) {
 		this.arriba = arriba;
 	}
-	public boolean isAbajo() {
+	public boolean getAbajo() {
 		return abajo;
 	}
 	public void setAbajo(boolean abajo) {
 		this.abajo = abajo;
 	}
-	public boolean isIzquierda() {
+	public boolean getIzquierda() {
 		return izquierda;
 	}
 	public void setIzquierda(boolean izquierda) {
 		this.izquierda = izquierda;
 	}
-	public boolean isDerecha() {
+	public boolean getDerecha() {
 		return derecha;
 	}
 	public void setDerecha(boolean derecha) {

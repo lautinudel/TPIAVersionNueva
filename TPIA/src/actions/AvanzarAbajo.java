@@ -1,12 +1,14 @@
 package actions;
 
 import search.*;
+import domain.Celda;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 public class AvanzarAbajo extends SearchAction {
+	private EstadoAgente agState;
 
     /**
      * This method updates a tree node state when the search process is running.
@@ -14,11 +16,13 @@ public class AvanzarAbajo extends SearchAction {
      */
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
-        EstadoAgente agState = (EstadoAgente) s;
+        this.agState = (EstadoAgente) s;
         
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
+        /*Celda c = this.agState.getposActual(); 
+        if ()*/
         
         return null;
     }
@@ -30,15 +34,23 @@ public class AvanzarAbajo extends SearchAction {
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         EstadoAmbiente environmentState = (EstadoAmbiente) est;
         EstadoAgente agState = ((EstadoAgente) ast);
+        
+        Celda c = environmentState.getmatrizMapa()[agState.getposActual().getFila()][agState.getposActual().getColumna()];
 
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
         
-        if (true) {
-            // Update the real world
+        if (c.getAbajo()) {
+            
             
             // Update the agent state
+        	agState.setposActual(agState.getposActual().getFila()-1,agState.getposActual().getColumna());
+        	agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
+            
+            
+        	// Update the real world
+            environmentState.setposAgente(agState.getposActual());
             
             return environmentState;
         }
@@ -51,7 +63,24 @@ public class AvanzarAbajo extends SearchAction {
      */
     @Override
     public Double getCost() {
-        return new Double(0);
+    	Double costo = 0.0;
+    	
+        switch(this.agState.gettipoVehiculo()){
+        case AUTO:
+     	   costo = 2.0;
+     	   break;
+        case TAXI:
+        	costo = 3.0;
+        	break;
+        case BICICLETA:
+        	costo = 0.0;
+        	break;
+        case MOTO:
+        	costo = 1.0;
+        	break;   	   
+     	   
+        }
+        return costo;
     }
 
     /**
@@ -62,4 +91,6 @@ public class AvanzarAbajo extends SearchAction {
     public String toString() {
         return "AvanzarAbajo";
     }
+    
+  
 }

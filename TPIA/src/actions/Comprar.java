@@ -1,6 +1,12 @@
 package actions;
 
 import search.*;
+
+import java.util.ArrayList;
+
+import domain.Celda;
+import domain.Producto;
+import domain.Supermercado;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -13,12 +19,38 @@ public class Comprar extends SearchAction {
      * It does not updates the real world state.
      */
     @Override
-    public SearchBasedAgentState execute(SearchBasedAgentState s) {
-        EstadoAgente agState = (EstadoAgente) s;
-        
+    public SearchBasedAgentState execute(SearchBasedAgentState state) {
+        EstadoAgente agState = (EstadoAgente) state;
+        boolean esSupermercado = false;
+
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
+        
+        for(Supermercado su : agState.getSupermercadosDisponibles()) {
+        	if(agState.equals(su.getUbicacion())) esSupermercado=true;
+        }
+        
+        if(esSupermercado) {//eliminar productos
+    		
+    		Supermercado superActual=null;
+    		//veo en que super estoy
+    		for(Supermercado sup : agState.getSupermercadosDisponibles()) {
+    			if(sup.getUbicacion().equals(agState.getposActual()))
+    				superActual = sup;
+    		}
+    		
+    		ArrayList<String> auxProductos = new ArrayList<String>();
+        	auxProductos.addAll(agState.getlistaProductos());
+    		for(String s: agState.getlistaProductos()) {
+    			for(Producto prod : superActual.getProductosDisponibles()) {
+    				if(s.equals(prod.getNombre())) auxProductos.remove(s);
+    			}
+    		}
+    		
+    		return agState;
+        }
+    		
         
         return null;
     }
@@ -30,18 +62,34 @@ public class Comprar extends SearchAction {
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         EstadoAmbiente environmentState = (EstadoAmbiente) est;
         EstadoAgente agState = ((EstadoAgente) ast);
+        boolean esSupermercado = false;
 
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
         
-        if (true) {
-            // Update the real world
-            
-            // Update the agent state
-            
-            return environmentState;
+        for(Supermercado s : agState.getSupermercadosDisponibles()) {
+        	if(agState.equals(s.getUbicacion())) esSupermercado=true;
         }
+        
+        if(esSupermercado) {//eliminar productos
+    		
+    		Supermercado superActual=null;
+    		//veo en que super estoy
+    		for(Supermercado s : agState.getSupermercadosDisponibles()) {
+    			if(s.getUbicacion().equals(agState.getposActual()))
+    				superActual = s;
+    		}
+    		
+    		ArrayList<String> auxProductos = new ArrayList<String>();
+        	auxProductos.addAll(agState.getlistaProductos());
+    		for(String s: agState.getlistaProductos()) {
+    			for(Producto prod : superActual.getProductosDisponibles()) {
+    				if(s.equals(prod.getNombre())) auxProductos.remove(s);
+    			}
+    		}
+    		return environmentState;
+    	}
 
         return null;
     }

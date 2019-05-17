@@ -1,6 +1,7 @@
 package search;
 
 import domain.Coordenadas;
+import domain.Supermercado;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
@@ -29,25 +30,23 @@ public class Ambiente extends Environment {
     public  AgentedeComprasPerception getPercept() {
         // Create a new perception to return
          AgentedeComprasPerception perception = new AgentedeComprasPerception();
-		
-         //Pimero chequeamos que la habitación en la que está el agente está sucia
          
          Coordenadas c = this.getEnvironmentState().getposAgente();
          boolean esSupermercado = false;
+         Coordenadas posAgente = this.getEnvironmentState().getposAgente();
          
          
-         for (int i = 0; i<this.getEnvironmentState().getListaDeSupermercados().size();i++) {
-         	if (c.equals(this.getEnvironmentState().getListaDeSupermercados().get(i).getUbicacion())) {
-         		esSupermercado = true;
-         	}
+         for(Supermercado s : this.getEnvironmentState().getListaDeSupermercados()) {
+         	if(posAgente.equals(s.getUbicacion())) esSupermercado=true;
          }
-         
-         //Si lo está, el valor de la percepción será 1; en caso contrario será 0
+      
          
          if(esSupermercado)
-         	perception.setestadocelda();
-         else
-         	perception.setestadocelda();
+         	perception.setEsSupermercado(true);
+         else {
+        	perception.setEsSupermercado(false);
+         }
+         perception.setestadoCelda(this.getEnvironmentState().getmatrizMapa()[posAgente.getFila()][posAgente.getColumna()]);
       
         // Return the perception
         return perception;
@@ -61,10 +60,9 @@ public class Ambiente extends Environment {
     
     public boolean agentFailed(Action actionReturned) {
 
-        EstadoAmbiente envState =
-                this.getEnvironmentState();
+        //EstadoAmbiente envState = this.getEnvironmentState();
 
-        // TODO: Complete Method        
+              
 
         return false;
     }
