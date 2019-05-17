@@ -1,12 +1,9 @@
 package search;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import domain.Coordenadas;
-import domain.Habitacion;
 import domain.TipoVehiculo;
-import frsf.cidisi.exercise.aspiradora.search.EstadoAspiradora;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
@@ -43,34 +40,9 @@ public class EstadoAgente extends SearchBasedAgentState {
     @Override
     public SearchBasedAgentState clone() {
         
-    	EstadoAgente newState = new EstadoAgente();
-    	
-    	//Los atributos de tipo primitvos se pasan por copia
-    	//newState.setenergiaDisponible(this.getenergiaDisponible());
-    	
-		//Los atributos que son objetos (los arrays también son de tipo objeto) se pasan por
-    	//referencia; luego, es necesario clonarlos
-    	List<Habitacion> newMapaHabitaciones = new ArrayList<Habitacion>();
-    	for(Habitacion h : this.getmapaHabitaciones())
-    		newMapaHabitaciones.add(h.clone());
-    	newState.setmapaHabitaciones(newMapaHabitaciones);
-    	
-    	//Buscamos en el nuevo mapa las habitaciones sucias para agregarlas a la nueva lista
-    	//de habitaciones sucias
-    	List<Habitacion> newHabitacionesSucias = new ArrayList<Habitacion>();
-    	for(Habitacion h : newMapaHabitaciones)
-    		for(Habitacion hs : this.gethabitacionesSucias())
-    			if(h.getNombre().equals(hs.getNombre()))
-    				newHabitacionesSucias.add(h);
-    	newState.sethabitacionesSucias(newHabitacionesSucias);
-    	
-    	//Este ultimo atributo (la posicion) ya se encuentra en la lista de habitaciones que
-    	//representa el mapa! Entonces debemos buscarlo en la lista (la NUEVA!)
-    	for(Habitacion h : newMapaHabitaciones)
-    		if(h.getNombre().equals(this.getposicion().getNombre()))
-    			newState.setposicion(h);
-    	
-        return newState;
+		//TODO: Complete Method
+		
+        return null;
     }
 
     /**

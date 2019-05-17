@@ -43,11 +43,10 @@ public class Ambiente extends Environment {
          }
          
          //Si lo está, el valor de la percepción será 1; en caso contrario será 0
-         
-         if(esSupermercado)
-         	perception.setestadocelda();
+         /*if(esSupermercado)
+         	perception.setestadocelda(arg);
          else
-         	perception.setestadocelda();
+         	perception.setsuciedad(0);*/
       
         // Return the perception
         return perception;

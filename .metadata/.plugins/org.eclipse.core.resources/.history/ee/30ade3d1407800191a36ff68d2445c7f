@@ -8,9 +8,7 @@ import frsf.cidisi.faia.environment.Environment;
 
 public class AgentedeComprasPerception extends Perception {
     
-	//Setup statics
 	public static Celda UNKNOWN_PERCEPTION ;   
-	//Setup sensors
 	private Celda estadocelda;
 	
  
@@ -30,21 +28,22 @@ public class AgentedeComprasPerception extends Perception {
     @Override
     public void initPerception(Agent agentIn, Environment environmentIn) {
     	
+    	//TODO: Complete Method
+        
         AgentedeCompras agent = (AgentedeCompras) agentIn;
         Ambiente environment = (Ambiente) environmentIn;
         EstadoAmbiente environmentState = environment.getEnvironmentState();
         
         //Aquí creamos la percepción inicial del agente
-        //Pimero chequeamos que la ubicación inicial no sea la de un supermercado
-        
+        //Pimero chequeamos que la ubicación no sea la de un supermercado
         Coordenadas posAgente = environmentState.getposAgente();
         boolean esSupermercado = false;
         
-        for (int i = 0; i<agent.getAgentState().getlistaLugaresVisitados().size();i++) {
+        /*for (int i = 0; i<agent.getAgentState().getlistaLugaresVisitados().size();i++) {
         	if (posAgente.equals(agent.getAgentState().getlistaLugaresVisitados().get(i).getCoordenadas())) {
         		esSupermercado = true;
         	}
-        }
+        }*/
         
     }
     
