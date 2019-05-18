@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="domain.Supermercado"/>
     <fullyQualifiedTypeName name="domain.Producto"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="domain.TipoVehiculo"/>
     <fullyQualifiedTypeName name="domain.Celda"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="search.CostFunction"/>
+    <fullyQualifiedTypeName name="domain.CriterioDeAhorro"/>
 </qualifiedTypeNameHistroy>

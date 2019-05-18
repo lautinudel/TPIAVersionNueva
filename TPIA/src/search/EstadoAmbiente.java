@@ -44,7 +44,7 @@ public class EstadoAmbiente extends EnvironmentState {
     	listaProd1.add(new Producto("P4", 80.0));
     	listaProd1.add(new Producto("P6", 40.0));
     	//SUPERMERCADOS DISPONIBLES
-    	Supermercado S6 = new Supermercado ("S1", new Coordenadas(1,0),true, listaProd1);
+    	Supermercado S1 = new Supermercado ("S1", new Coordenadas(1,0),true, listaProd1);
     	ArrayList<Producto> listaProd2 = new ArrayList<Producto>();
     	listaProd2.add(new Producto("P1", 10.0));
     	listaProd2.add(new Producto("P2", 10.0));
@@ -60,7 +60,7 @@ public class EstadoAmbiente extends EnvironmentState {
     	listaProd3.add(new Producto("P8", 10.0));
     	Supermercado S3 = new Supermercado ("S3", new Coordenadas(2,2),true, listaProd3);
     	this.listaDeSupermercados = new ArrayList<Supermercado>();
-    	this.listaDeSupermercados.add(S6);
+    	this.listaDeSupermercados.add(S1);
     	this.listaDeSupermercados.add(S2);
     	this.listaDeSupermercados.add(S3);
     }

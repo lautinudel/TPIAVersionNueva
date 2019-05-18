@@ -10,6 +10,11 @@ import frsf.cidisi.faia.solver.search.NTree;
  */
 public class Heuristic implements IEstimatedCostFunction {
 
+	
+	public Heuristic () {
+		
+	}
+	
     /**
      * It returns the estimated cost to reach the goal from a NTree node.
      */

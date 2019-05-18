@@ -40,7 +40,7 @@ public class Comprar extends SearchAction {
     			if(sup.getUbicacion().equals(agState.getposActual()))
     				superActual = sup;
     		}
-    		System.out.println("ENTRO AL SUPER: "+superActual.getNombre());
+    		//System.out.println("ENTRO AL SUPER: "+superActual.getNombre());
     		ArrayList<String> auxProductos = new ArrayList<String>();
         	auxProductos.addAll(agState.getlistaProductos());
         	
@@ -48,7 +48,16 @@ public class Comprar extends SearchAction {
     			for(Producto prod : superActual.getProductosDisponibles()) {
     				if(s.equals(prod.getNombre())) { 
     					auxProductos.remove(s);
-    					sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+prod.getPrecio());
+    					switch(sigEstado.getCriterioDeAhorro()) {
+    			    	case DINERO:sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+prod.getPrecio());
+    			    		break;
+    			    	case TIEMPO:sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+300.0);
+    			    		break;
+    			    	case AMBOS:sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+prod.getPrecio()/5.0);
+    			    		break;
+    					}
+    					
+    					
     				}
     			}
     		}
@@ -99,7 +108,14 @@ public class Comprar extends SearchAction {
     			for(Producto prod : superActual.getProductosDisponibles()) {
     				if(s.equals(prod.getNombre())) { 
     					auxProductos.remove(s);
-    					agState.setCostoAcumulado(agState.getCostoAcumulado()+prod.getPrecio());
+    					switch(agState.getCriterioDeAhorro()) {
+    			    	case DINERO:agState.setCostoAcumulado(agState.getCostoAcumulado()+prod.getPrecio());
+    			    		break;
+    			    	case TIEMPO:agState.setCostoAcumulado(agState.getCostoAcumulado()+300.0);
+    			    		break;
+    			    	case AMBOS:agState.setCostoAcumulado(agState.getCostoAcumulado()+prod.getPrecio()/5.0);
+    			    		break;
+    					}
     				}
     			}
     		}

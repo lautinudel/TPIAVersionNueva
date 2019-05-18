@@ -74,21 +74,56 @@ public class AvanzarArriba extends SearchAction {
     public Double getCost() {
     	Double costo = 0.0;
     	
-        switch(this.agState.gettipoVehiculo()){
-        case AUTO:
-     	   costo = 2.0;
-     	   break;
-        case TAXI:
-        	costo = 3.0;
-        	break;
-        case BICICLETA:
-        	costo = 0.0;
-        	break;
-        case MOTO:
-        	costo = 1.0;
-        	break;   	   
-     	   
-        }
+    	switch(this.agState.getCriterioDeAhorro()) {
+    	case DINERO:
+    		switch(this.agState.gettipoVehiculo()){
+            case AUTO:
+         	   costo = 2.0;
+         	   break;
+            case TAXI:
+            	costo = 3.0;
+            	break;
+            case BICICLETA:
+            	costo = 0.0;
+            	break;
+            case MOTO:
+            	costo = 1.0;
+            	break;   	      
+            }
+    		break;
+    	case TIEMPO://EN SEGUNDOS
+    		switch(this.agState.gettipoVehiculo()){
+            case AUTO:
+         	   costo = 15.0;
+         	   break;
+            case TAXI:
+            	costo = 15.0;
+            	break;
+            case BICICLETA:
+            	costo = 50.0;
+            	break;
+            case MOTO:
+            	costo = 25.0;
+            	break;   	      
+            }
+    		break;
+    	case AMBOS:
+    		switch(this.agState.gettipoVehiculo()){
+            case AUTO:
+         	   costo = 13.3;
+         	   break;
+            case TAXI:
+            	costo = 20.0;
+            	break;
+            case BICICLETA:
+            	costo = 0.50;
+            	break;
+            case MOTO:
+            	costo = 4.0;
+            	break;   	      
+            }
+    		break;
+    	}
         return costo;
     }
 
