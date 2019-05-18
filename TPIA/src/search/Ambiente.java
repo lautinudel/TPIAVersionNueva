@@ -35,8 +35,10 @@ public class Ambiente extends Environment {
          boolean esSupermercado = false;
          Coordenadas posAgente = this.getEnvironmentState().getposAgente();
          
-         
         /* for(Supermercado s : this.getEnvironmentState().getListaDeSupermercados()) {
+=======
+         /*for(Supermercado s : this.getEnvironmentState().getListaDeSupermercados()) {
+>>>>>>> Stashed changes
          	if(posAgente.equals(s.getUbicacion())) esSupermercado=true;
          }*/
       
