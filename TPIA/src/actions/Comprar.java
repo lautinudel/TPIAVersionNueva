@@ -12,14 +12,15 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 
 public class Comprar extends SearchAction {
-
+	private Double costo=0.0;
+	private EstadoAgente agState;
     /**
      * This method updates a tree node state when the search process is running.
      * It does not updates the real world state.
      */
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState state) {
-        EstadoAgente agState = (EstadoAgente) state;
+    	this.agState = (EstadoAgente) state;
         EstadoAgente sigEstado = (EstadoAgente) agState.clone();
         boolean esSupermercado = false;
 
@@ -48,14 +49,8 @@ public class Comprar extends SearchAction {
     			for(Producto prod : superActual.getProductosDisponibles()) {
     				if(s.equals(prod.getNombre())) { 
     					auxProductos.remove(s);
-    					switch(sigEstado.getCriterioDeAhorro()) {
-    			    	case DINERO:sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+prod.getPrecio());
-    			    		break;
-    			    	case TIEMPO:sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+300.0);
-    			    		break;
-    			    	case AMBOS:sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+prod.getPrecio()/5.0);
-    			    		break;
-    					}
+    					this.costo += prod.getPrecio();
+    					
     					
     					
     				}
@@ -108,16 +103,9 @@ public class Comprar extends SearchAction {
     			for(Producto prod : superActual.getProductosDisponibles()) {
     				if(s.equals(prod.getNombre())) { 
     					auxProductos.remove(s);
-    					switch(agState.getCriterioDeAhorro()) {
-    			    	case DINERO:agState.setCostoAcumulado(agState.getCostoAcumulado()+prod.getPrecio());
-    			    		break;
-    			    	case TIEMPO:agState.setCostoAcumulado(agState.getCostoAcumulado()+300.0);
-    			    		break;
-    			    	case AMBOS:agState.setCostoAcumulado(agState.getCostoAcumulado()+prod.getPrecio()/5.0);
-    			    		break;
+    					this.costo += prod.getPrecio();
     					}
     				}
-    			}
     		}
     		   		
     		agState.setlistaProductos(auxProductos);
@@ -130,7 +118,16 @@ public class Comprar extends SearchAction {
      */
     @Override
     public Double getCost() {
-        return 0.0;
+    	Double cost =0.0;
+    	switch(this.agState.getCriterioDeAhorro()) {
+    	case DINERO:cost= this.costo;
+    		break;
+    	case TIEMPO:cost= this.costo+1800.0;
+    		break;
+    	case AMBOS:cost= this.costo/5.0;
+    		break;
+		}
+    	return cost;
     }
 
     /**

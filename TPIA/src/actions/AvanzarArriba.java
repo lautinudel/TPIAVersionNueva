@@ -28,7 +28,7 @@ public class AvanzarArriba extends SearchAction {
         	//System.out.println("ARRIBA");
         	sigEstado.setposActual(sigEstado.getposActual().getFila()-1,sigEstado.getposActual().getColumna());
         	//System.out.println(sigEstado.toString());
-        	sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+this.getCost());
+        	//sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+this.getCost());
         	return sigEstado;
         }
         
@@ -55,7 +55,7 @@ public class AvanzarArriba extends SearchAction {
             
             // Update the agent state
         	agState.setposActual(agState.getposActual().getFila()-1,agState.getposActual().getColumna());
-        	agState.setCostoAcumulado(agState.getCostoAcumulado()+this.getCost());
+        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+this.getCost());
             
             
         	// Update the real world

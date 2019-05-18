@@ -24,7 +24,7 @@ public class EstadoAgente extends SearchBasedAgentState {
 	 									{10,-1,-1,-1,5,40,-1,-1,35},
 	 									{12,-1,10,-1,15,-1,10,10,-1}};*/
     private ArrayList<Supermercado> supermercadosDisponibles;
-    private Double costoAcumulado;
+    //private Double costoAcumulado;
     private TipoVehiculo tipoVehiculo;
     private CriterioDeAhorro criterioDeAhorro;
     /*private Celda[][] matrizMapa = 
@@ -90,7 +90,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     	newState.setmatrizCostosP(newMatrizCostosP);*/
     	
     	
-    	newState.setCostoAcumulado(this.getCostoAcumulado());
+    	//newState.setCostoAcumulado(this.getCostoAcumulado());
     	
     	TipoVehiculo aux = this.gettipoVehiculo();
     	newState.settipoVehiculo(aux);
@@ -163,11 +163,11 @@ public class EstadoAgente extends SearchBasedAgentState {
     	this.supermercadosDisponibles.add(S2);
     	this.supermercadosDisponibles.add(S3);
     	//COSTO TOTAL ACUMULADO
-		costoAcumulado=0.0;
+		//costoAcumulado=0.0;
 		//TIPO DE VEHICULO
 		tipoVehiculo = TipoVehiculo.AUTO;
 		//CRITERIO DE AHORRO
-		criterioDeAhorro = CriterioDeAhorro.TIEMPO;
+		criterioDeAhorro = CriterioDeAhorro.DINERO;
 
     }
 
@@ -180,7 +180,7 @@ public class EstadoAgente extends SearchBasedAgentState {
 
         str+="Posicion ("+this.posActual.getFila()+","+this.posActual.getColumna()+")\n";
         str+="Cantidad de productos a comprar "+this.listaProductos.size();
-        str+=" Costo acumulado: "+this.getCostoAcumulado();
+        //str+=" Costo acumulado: "+this.getCostoAcumulado();
         return str;
     }
 
@@ -208,7 +208,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     				mismosProductos = false;
     	}
     	boolean mismoTipoVehiculo = this.gettipoVehiculo() == e.gettipoVehiculo();
-    	boolean mismoCostoAcumulado = this.getCostoAcumulado() == e.getCostoAcumulado();
+    	//boolean mismoCostoAcumulado = this.getCostoAcumulado() == e.getCostoAcumulado();
     	
     	boolean mismosSupermercados = true;
     	mismosSupermercados = this.getSupermercadosDisponibles().size() == e.getSupermercadosDisponibles().size();
@@ -239,7 +239,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     	
     	
     	//System.out.println("MISMO ESTADO: "+mismaPosicion+" "+ mismoTipoVehiculo +" "+ mismoCostoAcumulado +" "+ mismosProductos +" "+ mismosSupermercados);
-    	return (mismaPosicion && mismoTipoVehiculo && mismoCostoAcumulado && mismosProductos && mismosSupermercados && mismoMapa && mismoCriterio);
+    	return (mismaPosicion && mismoTipoVehiculo && /*mismoCostoAcumulado &&*/ mismosProductos && mismosSupermercados && mismoMapa && mismoCriterio);
        
         
     	
@@ -280,12 +280,12 @@ public class EstadoAgente extends SearchBasedAgentState {
     public void settipoVehiculo(TipoVehiculo arg){
        tipoVehiculo = arg;
      }
-    public void setCostoAcumulado(Double arg) {
+   /* public void setCostoAcumulado(Double arg) {
     	this.costoAcumulado=arg;
     }
     public Double getCostoAcumulado() {
     	return this.costoAcumulado;
-    }
+    }*/
 
 	public ArrayList<Supermercado> getSupermercadosDisponibles() {
 		return supermercadosDisponibles;

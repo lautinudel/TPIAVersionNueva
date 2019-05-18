@@ -27,7 +27,7 @@ public class AvanzarIzquierda extends SearchAction {
         	//System.out.println("Posicón antes de avanzar: "+sigEstado.getposActual());
         	sigEstado.setposActual(sigEstado.getposActual().getFila(),sigEstado.getposActual().getColumna()-1);
         	//System.out.println(sigEstado.toString());
-        	sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+this.getCost());
+        	//sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+this.getCost());
         	
             return sigEstado;
         	
@@ -56,7 +56,7 @@ public class AvanzarIzquierda extends SearchAction {
             
             // Update the agent state
         	agState.setposActual(agState.getposActual().getFila(),agState.getposActual().getColumna()-1);
-        	agState.setCostoAcumulado(agState.getCostoAcumulado()+this.getCost());
+        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+this.getCost());
             
             
         	// Update the real world
