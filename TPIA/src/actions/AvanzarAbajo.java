@@ -24,10 +24,10 @@ public class AvanzarAbajo extends SearchAction {
         // PostConditions: null
         Celda c = agState.getMatrizMapa()[agState.getposActual().getFila()][agState.getposActual().getColumna()];
         if (c.getAbajo()) {
-        	System.out.println("ABAJO");
+        	//System.out.println("ABAJO");
         	sigEstado.setposActual(sigEstado.getposActual().getFila()+1,sigEstado.getposActual().getColumna());
-        	System.out.println(sigEstado.toString());
-        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
+        	//System.out.println(sigEstado.toString());
+        	sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+this.getCost());
         	return sigEstado;
         }
         
@@ -55,7 +55,7 @@ public class AvanzarAbajo extends SearchAction {
             
             // Update the agent state
         	agState.setposActual(agState.getposActual().getFila()+1,agState.getposActual().getColumna());
-        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
+        	agState.setCostoAcumulado(agState.getCostoAcumulado()+this.getCost());
             
             
         	// Update the real world

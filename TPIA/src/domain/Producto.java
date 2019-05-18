@@ -21,6 +21,9 @@ public class Producto {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-	
+	public boolean equals(Producto p) {
+		if(this.nombre==p.getNombre() && this.precio==p.precio) return true;
+		else return false;
+	}
 
 }

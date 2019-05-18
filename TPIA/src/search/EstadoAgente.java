@@ -23,7 +23,7 @@ public class EstadoAgente extends SearchBasedAgentState {
 	 									{10,-1,-1,-1,5,40,-1,-1,35},
 	 									{12,-1,10,-1,15,-1,10,10,-1}};*/
     private ArrayList<Supermercado> supermercadosDisponibles;
-    private int costoAcumulado;
+    private Double costoAcumulado;
     private TipoVehiculo tipoVehiculo;
     /*private Celda[][] matrizMapa = 
     	{{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
@@ -32,7 +32,7 @@ public class EstadoAgente extends SearchBasedAgentState {
 	
     */
     private Celda[][] matrizMapa = 
-    	{{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
+    	{{new Celda (false,false,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
     	{new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,false)},
     	{new Celda (true,false,false,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false)}};
     
@@ -106,39 +106,15 @@ public class EstadoAgente extends SearchBasedAgentState {
      */
     @Override
     public void updateState(Perception p) {
-        
-        //LEER LA CELDA Y ACTUALIZAR DONDE ESTA PARADO
     	
-    	//TODO: Complete Method
-    	
-    	/*AgentedeComprasPerception percepcion = (AgentedeComprasPerception) p;
-    	
-    	boolean esSupermercado = percepcion.getEsSupermercado();
+    	AgentedeComprasPerception percepcion = (AgentedeComprasPerception) p;
+    	Celda c = percepcion.getestadocelda();
     	
     	
-    	
-    	if(esSupermercado) {//eliminar productos
-    		
-    		Supermercado superActual=null;
-    		//veo en que super estoy
-    		for(Supermercado s : this.getSupermercadosDisponibles()) {
-    			if(s.getUbicacion().equals(this.getposActual()))
-    				superActual = s;
-    		}
-    		
-    		ArrayList<String> auxProductos = new ArrayList<String>();
-        	auxProductos.addAll(this.getlistaProductos());
-    		for(String s: this.getlistaProductos()) {
-    			for(Producto prod : superActual.getProductosDisponibles()) {
-    				if(s.equals(prod.getNombre())){
-    				 auxProductos.remove(s);
-    				}
-    			}
-    		}
-    	}else {
-    		//se sigue moviendo
-    	}*/
-    	
+    	if(!this.matrizMapa[this.posActual.getFila()][this.posActual.getColumna()].equals(c)) { //si la celda en la que estoy parado no es igual a la del ambiente actualizo
+    		this.matrizMapa[this.posActual.getFila()][this.posActual.getColumna()] = c;
+    	}
+    	this.setSupermercadosDisponibles(percepcion.getSupermercadosDisponibles()); //actualizo mi lista de supermercados
     	
     }
 
@@ -159,7 +135,6 @@ public class EstadoAgente extends SearchBasedAgentState {
     	listaProductos.add("P9"); //S2
     	ArrayList<Producto> listaProd1 = new ArrayList<Producto>();
     	listaProd1.add(new Producto("P1", 5.0));
-    	listaProd1.add(new Producto("P2", 20.0));
     	listaProd1.add(new Producto("P4", 80.0));
     	listaProd1.add(new Producto("P6", 40.0));
     	//SUPERMERCADOS DISPONIBLES
@@ -182,7 +157,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     	this.supermercadosDisponibles.add(S2);
     	this.supermercadosDisponibles.add(S3);
     	//COSTO TOTAL ACUMULADO
-		costoAcumulado=0;
+		costoAcumulado=0.0;
 		//TIPO DE VEHICULO
 		tipoVehiculo = TipoVehiculo.AUTO;
 
@@ -197,6 +172,7 @@ public class EstadoAgente extends SearchBasedAgentState {
 
         str+="Posicion ("+this.posActual.getFila()+","+this.posActual.getColumna()+")\n";
         str+="Cantidad de productos a comprar "+this.listaProductos.size();
+        str+=" Costo acumulado: "+this.getCostoAcumulado();
         return str;
     }
 
@@ -227,7 +203,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     	boolean mismoCostoAcumulado = true;//this.getCostoAcumulado() == e.getCostoAcumulado();
     	
     	boolean mismosSupermercados = true;
-    	/*mismosSupermercados = this.getSupermercadosDisponibles().size() == e.getSupermercadosDisponibles().size();
+    	mismosSupermercados = this.getSupermercadosDisponibles().size() == e.getSupermercadosDisponibles().size();
     	if(mismosSupermercados) {
     		String[] nombresActuales = getArrayOfNamesSuper(this.getSupermercadosDisponibles());
     		String[] nobresComparadas = getArrayOfNamesSuper(e.getSupermercadosDisponibles());
@@ -236,17 +212,24 @@ public class EstadoAgente extends SearchBasedAgentState {
     		for(int i=0;i<nombresActuales.length;i++)
     			if(!(nombresActuales[i].equals(nobresComparadas[i])))
     				mismosSupermercados = false;
-    	}*/
+    	}
     	
     	
     	
-    	//VERIFICAR SI LA MATRIZ MAPA ES LA MISMA
+    	boolean mismoMapa = true;
+    	for(int i=0;i<matrizMapa.length;i++) {
+    		for(int j=0;j<matrizMapa[i].length;j++) {
+    			if(matrizMapa.equals(e.getMatrizMapa()[i][j])) //se asume que ambas matrices son del mismo tamañp
+    				mismoMapa=false;
+    				
+    		}
+    	}
     	
     	
     	
     	
     	//System.out.println("MISMO ESTADO: "+mismaPosicion+" "+ mismoTipoVehiculo +" "+ mismoCostoAcumulado +" "+ mismosProductos +" "+ mismosSupermercados);
-    	return (mismaPosicion && mismoTipoVehiculo && mismoCostoAcumulado && mismosProductos && mismosSupermercados);
+    	return (mismaPosicion && mismoTipoVehiculo && mismoCostoAcumulado && mismosProductos && mismosSupermercados && mismoMapa);
        
         
     	
@@ -287,10 +270,10 @@ public class EstadoAgente extends SearchBasedAgentState {
     public void settipoVehiculo(TipoVehiculo arg){
        tipoVehiculo = arg;
      }
-    public void setCostoAcumulado(int arg) {
+    public void setCostoAcumulado(Double arg) {
     	this.costoAcumulado=arg;
     }
-    public int getCostoAcumulado() {
+    public Double getCostoAcumulado() {
     	return this.costoAcumulado;
     }
 

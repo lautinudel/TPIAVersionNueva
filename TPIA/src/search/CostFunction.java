@@ -9,13 +9,17 @@ import frsf.cidisi.faia.solver.search.NTree;
  * Uniform Cost.
  */
 public class CostFunction implements IStepCostFunction {
-
+	public CostFunction() {
+		
+	}
     /**
      * This method calculates the cost of the given NTree node.
      */
     @Override
     public double calculateCost(NTree node) {        
        
-       return node.getAction().getCost(); 
+    	EstadoAgente e = (EstadoAgente) node.getAgentState();
+    
+       return e.getCostoAcumulado(); 
     }
 }

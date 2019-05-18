@@ -1,5 +1,7 @@
 package search;
 
+import java.util.ArrayList;
+
 import domain.Celda;
 import domain.Coordenadas;
 import domain.Supermercado;
@@ -13,13 +15,12 @@ public class AgentedeComprasPerception extends Perception {
 	public static Celda UNKNOWN_PERCEPTION ;   
 	//Setup sensors
 	private Celda estadoCelda;
-	private boolean esSupermercado;
- 
+	private ArrayList<Supermercado> supermercadosDisponibles;
 
     public  AgentedeComprasPerception() {
     	UNKNOWN_PERCEPTION = new Celda(false,false,false,false);
-    	esSupermercado=false;
     	estadoCelda = UNKNOWN_PERCEPTION;
+    	supermercadosDisponibles = new ArrayList<Supermercado>();
     }
 
     public AgentedeComprasPerception(Agent agent, Environment environment) {
@@ -42,7 +43,7 @@ public class AgentedeComprasPerception extends Perception {
         Coordenadas posAgente = environmentState.getposAgente();
         
         estadoCelda = environmentState.getmatrizMapa()[posAgente.getFila()][posAgente.getColumna()];
-        
+        supermercadosDisponibles = environmentState.getListaDeSupermercados();
         /*for(Supermercado s : environmentState.getListaDeSupermercados()) {
         	if(posAgente.equals(s.getUbicacion())) esSupermercado=true;
         }*/
@@ -60,6 +61,7 @@ public class AgentedeComprasPerception extends Perception {
         str+= " Abajo: "+estadoCelda.getAbajo();
         str+= " Derecha: "+estadoCelda.getDerecha();
         str+= " Izquierda: "+estadoCelda.getIzquierda();
+        str+= " Supermercados disponibles: "+getSupermercadosDisponibles().size();
        /* str += "Estoy en un supermercado: ";
         str+=(esSupermercado==true)?"Si":"No";*/
 
@@ -70,18 +72,19 @@ public class AgentedeComprasPerception extends Perception {
     // The following methods are agent-specific:
     //TODO: Complete this section with the agent-specific methods
 	
-     public Celda getestadocelda(){
+     public ArrayList<Supermercado> getSupermercadosDisponibles() {
+		return supermercadosDisponibles;
+	}
+
+	public void setSupermercadosDisponibles(ArrayList<Supermercado> supermercadosDisponibles) {
+		this.supermercadosDisponibles = supermercadosDisponibles;
+	}
+
+	public Celda getestadocelda(){
         return estadoCelda;
      }
      public void setestadoCelda(Celda arg){
         this.estadoCelda = arg;
      }
-     
-     public void setEsSupermercado(boolean arg) {
-    	 this.esSupermercado=arg;
-     }
-	public boolean getEsSupermercado() {
-		return this.esSupermercado;
-	}
    
 }

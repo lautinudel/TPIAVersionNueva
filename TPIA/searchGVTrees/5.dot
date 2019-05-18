@@ -1,0 +1,32 @@
+digraph g {
+node [shape = Mrecord];
+nodo0[label="{EO: 0|cost: 0.0|A: null}"]
+nodo1[label="{EO: 1|cost: -1.0|A: Comprar}"]
+nodo3[label="{EO: 3|cost: -2.0|A: AvanzarAbajo|Posicion\n(13)
+Cantidad\nde\nproductos\na\ncomprar\n1}"]
+nodo4[label="{EO: 4|cost: -3.0|A: AvanzarIzquierda|Posicion\n(23)
+Cantidad\nde\nproductos\na\ncomprar\n1}"]
+nodo5[label="{EO: 5|cost: -4.0|A: Comprar|Posicion\n(22)
+Cantidad\nde\nproductos\na\ncomprar\n1}"]
+
+nodo4 -> nodo5;
+nodo6[label="{EO: 6|cost: -4.0|A: AvanzarArriba|Posicion\n(22)
+Cantidad\nde\nproductos\na\ncomprar\n1}"]
+
+nodo4 -> nodo6;
+nodo7[label="{EO: 7|cost: -4.0|A: AvanzarIzquierda|Posicion\n(22)
+Cantidad\nde\nproductos\na\ncomprar\n1}"]
+
+nodo4 -> nodo7;
+
+nodo3 -> nodo4;
+
+nodo1 -> nodo3;
+
+nodo0 -> nodo1;
+nodo2[label="{EO: 2|cost: -1.0|A: AvanzarAbajo}"]
+
+nodo0 -> nodo2;
+
+
+}

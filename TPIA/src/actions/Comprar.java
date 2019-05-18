@@ -31,7 +31,7 @@ public class Comprar extends SearchAction {
         	//System.out.println(agState.getposActual().toString()+" ------"+su.getUbicacion().toString());
         	if(agState.getposActual().equals(su.getUbicacion())) esSupermercado=true;
         }
-        System.out.println("COMPRAR:"+esSupermercado);
+        //System.out.println("COMPRAR:"+esSupermercado);
         if(esSupermercado) {//eliminar productos
     		
     		Supermercado superActual=null;
@@ -40,7 +40,7 @@ public class Comprar extends SearchAction {
     			if(sup.getUbicacion().equals(agState.getposActual()))
     				superActual = sup;
     		}
-    		
+    		System.out.println("ENTRO AL SUPER: "+superActual.getNombre());
     		ArrayList<String> auxProductos = new ArrayList<String>();
         	auxProductos.addAll(agState.getlistaProductos());
         	
@@ -48,6 +48,7 @@ public class Comprar extends SearchAction {
     			for(Producto prod : superActual.getProductosDisponibles()) {
     				if(s.equals(prod.getNombre())) { 
     					auxProductos.remove(s);
+    					sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+prod.getPrecio());
     				}
     			}
     		}
@@ -98,6 +99,7 @@ public class Comprar extends SearchAction {
     			for(Producto prod : superActual.getProductosDisponibles()) {
     				if(s.equals(prod.getNombre())) { 
     					auxProductos.remove(s);
+    					agState.setCostoAcumulado(agState.getCostoAcumulado()+prod.getPrecio());
     				}
     			}
     		}

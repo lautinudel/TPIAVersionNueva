@@ -23,10 +23,11 @@ public class AvanzarDerecha extends SearchAction {
         
         Celda c = agState.getMatrizMapa()[agState.getposActual().getFila()][agState.getposActual().getColumna()];
         if (c.getDerecha()) {
-        	System.out.println("DERECHA");
+        	//System.out.println("DERECHA");
         	sigEstado.setposActual(sigEstado.getposActual().getFila(),sigEstado.getposActual().getColumna()+1);
-        	System.out.println(sigEstado.toString());
-        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
+        	//System.out.println(sigEstado.toString());
+        	sigEstado.setCostoAcumulado(sigEstado.getCostoAcumulado()+this.getCost());
+        	
             return sigEstado;
         }
         
@@ -53,7 +54,7 @@ public class AvanzarDerecha extends SearchAction {
             
             // Update the agent state
         	agState.setposActual(agState.getposActual().getFila(),agState.getposActual().getColumna()+1);
-        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
+        	agState.setCostoAcumulado(agState.getCostoAcumulado()+this.getCost());
             
             
         	// Update the real world

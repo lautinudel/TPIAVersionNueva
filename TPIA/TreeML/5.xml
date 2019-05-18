@@ -1,0 +1,178 @@
+<tree id="5" edgedefault="directed">
+<node Id="0" Action="null" Cost="0.0" Estado_Agente="Posicion (2,2)
+Cantidad de productos a comprar 3 Costo acumulado: 12.0"/>
+<node Id="1" Action="AvanzarIzquierda" Cost="12.0" Estado_Agente="Posicion (2,2)
+Cantidad de productos a comprar 3 Costo acumulado: 12.0"/>
+<node Id="2" Action="Comprar" Cost="34.0" Estado_Agente="Posicion (2,2)
+Cantidad de productos a comprar 2 Costo acumulado: 22.0"/>
+<node Id="3" Action="AvanzarArriba" Cost="26.0" Estado_Agente="Posicion (1,2)
+Cantidad de productos a comprar 3 Costo acumulado: 14.0"/>
+<node Id="4" Action="AvanzarIzquierda" Cost="26.0" Estado_Agente="Posicion (2,1)
+Cantidad de productos a comprar 3 Costo acumulado: 14.0"/>
+<node Id="8" Action="AvanzarArriba" Cost="58.0" Estado_Agente="Posicion (1,2)
+Cantidad de productos a comprar 2 Costo acumulado: 24.0"/>
+<node Id="9" Action="AvanzarIzquierda" Cost="58.0" Estado_Agente="Posicion (2,1)
+Cantidad de productos a comprar 2 Costo acumulado: 24.0"/>
+<node Id="13" Action="AvanzarDerecha" Cost="84.0" Estado_Agente="Posicion (1,3)
+Cantidad de productos a comprar 2 Costo acumulado: 26.0"/>
+<node Id="14" Action="AvanzarArriba" Cost="84.0" Estado_Agente="Posicion (0,2)
+Cantidad de productos a comprar 2 Costo acumulado: 26.0"/>
+<node Id="24" Action="Comprar" Cost="155.0" Estado_Agente="Posicion (1,3)
+Cantidad de productos a comprar 0 Costo acumulado: 71.0"/>
+<node Id="25" Action="AvanzarAbajo" Cost="112.0" Estado_Agente="Posicion (2,3)
+Cantidad de productos a comprar 2 Costo acumulado: 28.0"/>
+<node Id="26" Action="AvanzarIzquierda" Cost="112.0" Estado_Agente="Posicion (0,1)
+Cantidad de productos a comprar 2 Costo acumulado: 28.0"/>
+<node Id="38" Action="AvanzarAbajo" Cost="142.0" Estado_Agente="Posicion (1,1)
+Cantidad de productos a comprar 2 Costo acumulado: 30.0"/>
+<node Id="39" Action="AvanzarIzquierda" Cost="142.0" Estado_Agente="Posicion (0,0)
+Cantidad de productos a comprar 2 Costo acumulado: 30.0"/>
+<node Id="52" Action="AvanzarAbajo" Cost="174.0" Estado_Agente="Posicion (2,1)
+Cantidad de productos a comprar 2 Costo acumulado: 32.0"/>
+<node Id="53" Action="AvanzarAbajo" Cost="174.0" Estado_Agente="Posicion (1,0)
+Cantidad de productos a comprar 2 Costo acumulado: 32.0"/>
+<node Id="15" Action="AvanzarIzquierda" Cost="84.0" Estado_Agente="Posicion (2,0)
+Cantidad de productos a comprar 2 Costo acumulado: 26.0"/>
+<node Id="27" Action="AvanzarArriba" Cost="112.0" Estado_Agente="Posicion (1,0)
+Cantidad de productos a comprar 2 Costo acumulado: 28.0"/>
+<node Id="40" Action="Comprar" Cost="155.0" Estado_Agente="Posicion (1,0)
+Cantidad de productos a comprar 1 Costo acumulado: 43.0"/>
+<node Id="41" Action="AvanzarDerecha" Cost="142.0" Estado_Agente="Posicion (1,1)
+Cantidad de productos a comprar 2 Costo acumulado: 30.0"/>
+<node Id="42" Action="AvanzarArriba" Cost="142.0" Estado_Agente="Posicion (0,0)
+Cantidad de productos a comprar 2 Costo acumulado: 30.0"/>
+<node Id="54" Action="AvanzarDerecha" Cost="174.0" Estado_Agente="Posicion (1,2)
+Cantidad de productos a comprar 2 Costo acumulado: 32.0"/>
+<node Id="5" Action="AvanzarDerecha" Cost="42.0" Estado_Agente="Posicion (1,3)
+Cantidad de productos a comprar 3 Costo acumulado: 16.0"/>
+<node Id="6" Action="AvanzarArriba" Cost="42.0" Estado_Agente="Posicion (0,2)
+Cantidad de productos a comprar 3 Costo acumulado: 16.0"/>
+<node Id="10" Action="Comprar" Cost="103.0" Estado_Agente="Posicion (1,3)
+Cantidad de productos a comprar 1 Costo acumulado: 61.0"/>
+<node Id="37" Action="AvanzarAbajo" Cost="166.0" Estado_Agente="Posicion (2,3)
+Cantidad de productos a comprar 1 Costo acumulado: 63.0"/>
+<node Id="11" Action="AvanzarIzquierda" Cost="60.0" Estado_Agente="Posicion (0,1)
+Cantidad de productos a comprar 3 Costo acumulado: 18.0"/>
+<node Id="16" Action="AvanzarAbajo" Cost="80.0" Estado_Agente="Posicion (1,1)
+Cantidad de productos a comprar 3 Costo acumulado: 20.0"/>
+<node Id="17" Action="AvanzarIzquierda" Cost="80.0" Estado_Agente="Posicion (0,0)
+Cantidad de productos a comprar 3 Costo acumulado: 20.0"/>
+<node Id="21" Action="AvanzarAbajo" Cost="102.0" Estado_Agente="Posicion (2,1)
+Cantidad de productos a comprar 3 Costo acumulado: 22.0"/>
+<node Id="31" Action="AvanzarIzquierda" Cost="126.0" Estado_Agente="Posicion (2,0)
+Cantidad de productos a comprar 3 Costo acumulado: 24.0"/>
+<node Id="43" Action="AvanzarArriba" Cost="152.0" Estado_Agente="Posicion (1,0)
+Cantidad de productos a comprar 3 Costo acumulado: 26.0"/>
+<node Id="55" Action="Comprar" Cost="193.0" Estado_Agente="Posicion (1,0)
+Cantidad de productos a comprar 2 Costo acumulado: 41.0"/>
+<node Id="56" Action="AvanzarArriba" Cost="180.0" Estado_Agente="Posicion (0,0)
+Cantidad de productos a comprar 3 Costo acumulado: 28.0"/>
+<node Id="22" Action="AvanzarAbajo" Cost="102.0" Estado_Agente="Posicion (1,0)
+Cantidad de productos a comprar 3 Costo acumulado: 22.0"/>
+<node Id="32" Action="Comprar" Cost="139.0" Estado_Agente="Posicion (1,0)
+Cantidad de productos a comprar 2 Costo acumulado: 37.0"/>
+<node Id="33" Action="AvanzarDerecha" Cost="126.0" Estado_Agente="Posicion (1,1)
+Cantidad de productos a comprar 3 Costo acumulado: 24.0"/>
+<node Id="34" Action="AvanzarAbajo" Cost="126.0" Estado_Agente="Posicion (2,0)
+Cantidad de productos a comprar 3 Costo acumulado: 24.0"/>
+<node Id="49" Action="AvanzarDerecha" Cost="178.0" Estado_Agente="Posicion (1,1)
+Cantidad de productos a comprar 2 Costo acumulado: 39.0"/>
+<node Id="50" Action="AvanzarAbajo" Cost="178.0" Estado_Agente="Posicion (2,0)
+Cantidad de productos a comprar 2 Costo acumulado: 39.0"/>
+<node Id="51" Action="AvanzarArriba" Cost="178.0" Estado_Agente="Posicion (0,0)
+Cantidad de productos a comprar 2 Costo acumulado: 39.0"/>
+<node Id="44" Action="AvanzarAbajo" Cost="152.0" Estado_Agente="Posicion (2,1)
+Cantidad de productos a comprar 3 Costo acumulado: 26.0"/>
+<node Id="57" Action="AvanzarIzquierda" Cost="180.0" Estado_Agente="Posicion (2,0)
+Cantidad de productos a comprar 3 Costo acumulado: 28.0"/>
+<node Id="7" Action="AvanzarIzquierda" Cost="42.0" Estado_Agente="Posicion (2,0)
+Cantidad de productos a comprar 3 Costo acumulado: 16.0"/>
+<node Id="12" Action="AvanzarArriba" Cost="60.0" Estado_Agente="Posicion (1,0)
+Cantidad de productos a comprar 3 Costo acumulado: 18.0"/>
+<node Id="18" Action="Comprar" Cost="93.0" Estado_Agente="Posicion (1,0)
+Cantidad de productos a comprar 2 Costo acumulado: 33.0"/>
+<node Id="19" Action="AvanzarDerecha" Cost="80.0" Estado_Agente="Posicion (1,1)
+Cantidad de productos a comprar 3 Costo acumulado: 20.0"/>
+<node Id="20" Action="AvanzarArriba" Cost="80.0" Estado_Agente="Posicion (0,0)
+Cantidad de productos a comprar 3 Costo acumulado: 20.0"/>
+<node Id="28" Action="AvanzarDerecha" Cost="128.0" Estado_Agente="Posicion (1,1)
+Cantidad de productos a comprar 2 Costo acumulado: 35.0"/>
+<node Id="29" Action="AvanzarAbajo" Cost="128.0" Estado_Agente="Posicion (2,0)
+Cantidad de productos a comprar 2 Costo acumulado: 35.0"/>
+<node Id="30" Action="AvanzarArriba" Cost="128.0" Estado_Agente="Posicion (0,0)
+Cantidad de productos a comprar 2 Costo acumulado: 35.0"/>
+<node Id="47" Action="AvanzarDerecha" Cost="165.0" Estado_Agente="Posicion (1,2)
+Cantidad de productos a comprar 2 Costo acumulado: 37.0"/>
+<node Id="48" Action="AvanzarAbajo" Cost="165.0" Estado_Agente="Posicion (2,1)
+Cantidad de productos a comprar 2 Costo acumulado: 37.0"/>
+<node Id="23" Action="AvanzarDerecha" Cost="102.0" Estado_Agente="Posicion (1,2)
+Cantidad de productos a comprar 3 Costo acumulado: 22.0"/>
+<node Id="35" Action="AvanzarDerecha" Cost="126.0" Estado_Agente="Posicion (1,3)
+Cantidad de productos a comprar 3 Costo acumulado: 24.0"/>
+<node Id="36" Action="AvanzarArriba" Cost="126.0" Estado_Agente="Posicion (0,2)
+Cantidad de productos a comprar 3 Costo acumulado: 24.0"/>
+<node Id="45" Action="Comprar" Cost="195.0" Estado_Agente="Posicion (1,3)
+Cantidad de productos a comprar 1 Costo acumulado: 69.0"/>
+<node Id="46" Action="AvanzarIzquierda" Cost="152.0" Estado_Agente="Posicion (0,1)
+Cantidad de productos a comprar 3 Costo acumulado: 26.0"/>
+<node Id="58" Action="AvanzarIzquierda" Cost="180.0" Estado_Agente="Posicion (0,0)
+Cantidad de productos a comprar 3 Costo acumulado: 28.0"/>
+<edge source="0" target="1"/>
+<edge source="1" target="2"/>
+<edge source="1" target="3"/>
+<edge source="1" target="4"/>
+<edge source="2" target="8"/>
+<edge source="2" target="9"/>
+<edge source="3" target="5"/>
+<edge source="3" target="6"/>
+<edge source="4" target="7"/>
+<edge source="8" target="13"/>
+<edge source="8" target="14"/>
+<edge source="9" target="15"/>
+<edge source="13" target="24"/>
+<edge source="13" target="25"/>
+<edge source="14" target="26"/>
+<edge source="26" target="38"/>
+<edge source="26" target="39"/>
+<edge source="38" target="52"/>
+<edge source="39" target="53"/>
+<edge source="15" target="27"/>
+<edge source="27" target="40"/>
+<edge source="27" target="41"/>
+<edge source="27" target="42"/>
+<edge source="41" target="54"/>
+<edge source="5" target="10"/>
+<edge source="6" target="11"/>
+<edge source="10" target="37"/>
+<edge source="11" target="16"/>
+<edge source="11" target="17"/>
+<edge source="16" target="21"/>
+<edge source="17" target="22"/>
+<edge source="21" target="31"/>
+<edge source="31" target="43"/>
+<edge source="43" target="55"/>
+<edge source="43" target="56"/>
+<edge source="22" target="32"/>
+<edge source="22" target="33"/>
+<edge source="22" target="34"/>
+<edge source="32" target="49"/>
+<edge source="32" target="50"/>
+<edge source="32" target="51"/>
+<edge source="33" target="44"/>
+<edge source="44" target="57"/>
+<edge source="7" target="12"/>
+<edge source="12" target="18"/>
+<edge source="12" target="19"/>
+<edge source="12" target="20"/>
+<edge source="18" target="28"/>
+<edge source="18" target="29"/>
+<edge source="18" target="30"/>
+<edge source="19" target="23"/>
+<edge source="28" target="47"/>
+<edge source="28" target="48"/>
+<edge source="23" target="35"/>
+<edge source="23" target="36"/>
+<edge source="35" target="45"/>
+<edge source="36" target="46"/>
+<edge source="46" target="58"/>
+</tree>

@@ -41,7 +41,11 @@ public class Celda {
 		super();
 	}
 	 
-	 
+	public boolean equals (Celda c) {
+		if(this.arriba==c.getArriba() && this.abajo==c.getAbajo() && this.izquierda==c.getIzquierda() && this.derecha==c.getDerecha())
+			return true;
+		else return false;
+	}
 	 
 	 
 	 

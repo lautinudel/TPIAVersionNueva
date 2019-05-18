@@ -32,7 +32,7 @@ public class Ambiente extends Environment {
          AgentedeComprasPerception perception = new AgentedeComprasPerception();
          
          Coordenadas c = this.getEnvironmentState().getposAgente();
-         boolean esSupermercado = false;
+         //boolean esSupermercado = false;
          Coordenadas posAgente = this.getEnvironmentState().getposAgente();
          
         /* for(Supermercado s : this.getEnvironmentState().getListaDeSupermercados()) {
@@ -43,13 +43,13 @@ public class Ambiente extends Environment {
          }*/
       
          
-         if(esSupermercado)
+         /*if(esSupermercado)
          	perception.setEsSupermercado(true);
          else {
         	perception.setEsSupermercado(false);
-         }
+         }*/
          perception.setestadoCelda(this.getEnvironmentState().getmatrizMapa()[posAgente.getFila()][posAgente.getColumna()]);
-      
+         perception.setSupermercadosDisponibles(this.getEnvironmentState().getListaDeSupermercados());
         // Return the perception
         return perception;
     }

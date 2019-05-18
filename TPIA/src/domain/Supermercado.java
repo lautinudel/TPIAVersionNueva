@@ -34,7 +34,7 @@ public class Supermercado {
 		this.ubicacion = ubicacion;
 	}
 
-	public boolean isDisponibilidad() {
+	public boolean getDisponibilidad() {
 		return disponibilidad;
 	}
 
@@ -50,7 +50,18 @@ public class Supermercado {
 		this.productosDisponibles = productosDisponibles;
 	}
 	
-	
+	public boolean equals(Supermercado s) {
+		boolean mismosProductos = true;
+		for(Producto actual : this.productosDisponibles) {
+			mismosProductos=false;
+			for(Producto real : s.getProductosDisponibles()) {
+				if(actual.equals(s)) mismosProductos=true;
+			}
+		}
+		if(this.nombre.equals(s.getNombre()) && this.disponibilidad==s.getDisponibilidad() && this.ubicacion.equals(s.getUbicacion()) && mismosProductos)
+			return true;
+		else return false;
+	}
 	
 	
 	

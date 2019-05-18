@@ -51,15 +51,16 @@ public class AgentedeCompras extends SearchBasedAgent {
     public Action selectAction() {
 
         // Create the search strategy
-        DepthFirstSearch strategy = new DepthFirstSearch();          
-
+        //DepthFirstSearch strategy = new DepthFirstSearch(); //PROFUNDIDAD         
+        //BreathFirstSearch strategy = new BreathFirstSearch(); //AMPLITUD
+        UniformCostSearch strategy = new UniformCostSearch(new CostFunction());
         // Create a Search object with the strategy
         Search searchSolver = new Search(strategy);
-
+        
         /* Generate an XML file with the search tree. It can also be generated
          * in other formats like PDF with PDF_TREE */
-        searchSolver.setVisibleTree(Search.GRAPHVIZ_TREE);
-        //searchSolver.setVisibleTree(Search.EFAIA_TREE);
+        //searchSolver.setVisibleTree(Search.GRAPHVIZ_TREE);
+        searchSolver.setVisibleTree(Search.EFAIA_TREE);
 
         // Set the Search searchSolver.
         this.setSolver(searchSolver);
