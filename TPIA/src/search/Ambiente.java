@@ -5,7 +5,7 @@ import domain.Supermercado;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
-import sun.management.resources.agent;
+//import sun.management.resources.agent;
 
 public class Ambiente extends Environment {
 	
@@ -36,9 +36,9 @@ public class Ambiente extends Environment {
          Coordenadas posAgente = this.getEnvironmentState().getposAgente();
          
          
-         for(Supermercado s : this.getEnvironmentState().getListaDeSupermercados()) {
+        /* for(Supermercado s : this.getEnvironmentState().getListaDeSupermercados()) {
          	if(posAgente.equals(s.getUbicacion())) esSupermercado=true;
-         }
+         }*/
       
          
          if(esSupermercado)

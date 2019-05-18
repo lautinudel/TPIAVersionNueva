@@ -4,7 +4,6 @@ import search.*;
 
 import java.util.ArrayList;
 
-import domain.Celda;
 import domain.Producto;
 import domain.Supermercado;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -21,6 +20,7 @@ public class Comprar extends SearchAction {
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState state) {
         EstadoAgente agState = (EstadoAgente) state;
+        EstadoAgente sigEstado = (EstadoAgente) agState.clone();
         boolean esSupermercado = false;
 
         // TODO: Use this conditions
@@ -28,27 +28,36 @@ public class Comprar extends SearchAction {
         // PostConditions: null
         
         for(Supermercado su : agState.getSupermercadosDisponibles()) {
-        	if(agState.equals(su.getUbicacion())) esSupermercado=true;
+        	//System.out.println(agState.getposActual().toString()+" ------"+su.getUbicacion().toString());
+        	if(agState.getposActual().equals(su.getUbicacion())) esSupermercado=true;
         }
-        
+        System.out.println("COMPRAR:"+esSupermercado);
         if(esSupermercado) {//eliminar productos
     		
     		Supermercado superActual=null;
     		//veo en que super estoy
-    		for(Supermercado sup : agState.getSupermercadosDisponibles()) {
+    		for(Supermercado sup : sigEstado.getSupermercadosDisponibles()) {
     			if(sup.getUbicacion().equals(agState.getposActual()))
     				superActual = sup;
     		}
     		
     		ArrayList<String> auxProductos = new ArrayList<String>();
         	auxProductos.addAll(agState.getlistaProductos());
-    		for(String s: agState.getlistaProductos()) {
+        	
+    		for(String s: agState.getlistaProductos()) {  
     			for(Producto prod : superActual.getProductosDisponibles()) {
-    				if(s.equals(prod.getNombre())) auxProductos.remove(s);
+    				if(s.equals(prod.getNombre())) { 
+    					auxProductos.remove(s);
+    				}
     			}
     		}
+    		   		
+    		sigEstado.setlistaProductos(auxProductos);
     		
-    		return agState;
+    		//System.out.println("Agente viejo: "+agState);
+    		//System.out.println("Agente clonado: "+sigEstado);
+    		
+    		return sigEstado;
         }
     		
         
@@ -68,30 +77,34 @@ public class Comprar extends SearchAction {
         // PreConditions: null
         // PostConditions: null
         
-        for(Supermercado s : agState.getSupermercadosDisponibles()) {
-        	if(agState.equals(s.getUbicacion())) esSupermercado=true;
+        for(Supermercado su : agState.getSupermercadosDisponibles()) {
+        	//System.out.println(agState.getposActual().toString()+" ------"+su.getUbicacion().toString());
+        	if(agState.getposActual().equals(su.getUbicacion())) esSupermercado=true;
         }
-        
+        //System.out.println("COMPRAR:"+esSupermercado);
         if(esSupermercado) {//eliminar productos
     		
     		Supermercado superActual=null;
     		//veo en que super estoy
-    		for(Supermercado s : agState.getSupermercadosDisponibles()) {
-    			if(s.getUbicacion().equals(agState.getposActual()))
-    				superActual = s;
+    		for(Supermercado sup : agState.getSupermercadosDisponibles()) {
+    			if(sup.getUbicacion().equals(agState.getposActual()))
+    				superActual = sup;
     		}
     		
     		ArrayList<String> auxProductos = new ArrayList<String>();
         	auxProductos.addAll(agState.getlistaProductos());
-    		for(String s: agState.getlistaProductos()) {
+        	
+    		for(String s: agState.getlistaProductos()) {  
     			for(Producto prod : superActual.getProductosDisponibles()) {
-    				if(s.equals(prod.getNombre())) auxProductos.remove(s);
+    				if(s.equals(prod.getNombre())) { 
+    					auxProductos.remove(s);
+    				}
     			}
     		}
-    		return environmentState;
-    	}
-
-        return null;
+    		   		
+    		agState.setlistaProductos(auxProductos);
+        }
+        return environmentState;
     }
 
     /**
@@ -99,7 +112,7 @@ public class Comprar extends SearchAction {
      */
     @Override
     public Double getCost() {
-        return new Double(0);
+        return 0.0;
     }
 
     /**

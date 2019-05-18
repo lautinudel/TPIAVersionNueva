@@ -56,10 +56,10 @@ public class AgentedeComprasPerception extends Perception {
 
         //TODO: Complete Method
         str += "Estado de la celda: ";
-        str+= "Arriba: "+estadoCelda.getArriba();
-        str+= "Abajo: "+estadoCelda.getAbajo();
-        str+= "Derecha: "+estadoCelda.getDerecha();
-        str+= "Izquierda: "+estadoCelda.getIzquierda();
+        str+= " Arriba: "+estadoCelda.getArriba();
+        str+= " Abajo: "+estadoCelda.getAbajo();
+        str+= " Derecha: "+estadoCelda.getDerecha();
+        str+= " Izquierda: "+estadoCelda.getIzquierda();
        /* str += "Estoy en un supermercado: ";
         str+=(esSupermercado==true)?"Si":"No";*/
 

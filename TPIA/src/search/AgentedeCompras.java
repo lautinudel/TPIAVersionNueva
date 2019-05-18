@@ -30,11 +30,14 @@ public class AgentedeCompras extends SearchBasedAgent {
 
         // Create the operators
         Vector<SearchAction> operators = new Vector<SearchAction>();
-        operators.addElement(new AvanzarArriba());	
-        operators.addElement(new AvanzarIzquierda());	
-        operators.addElement(new AvanzarDerecha());	
-        operators.addElement(new AvanzarAbajo());	
-        operators.addElement(new Comprar());	
+    	operators.addElement(new Comprar());
+        operators.addElement(new AvanzarDerecha());
+        operators.addElement(new AvanzarAbajo()); 
+        operators.addElement(new AvanzarArriba());
+        operators.addElement(new AvanzarIzquierda());
+        
+        	
+         
 
         // Create the Problem which the agent will resolve
         Problem problem = new Problem(agGoal, agState, operators);

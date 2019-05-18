@@ -16,10 +16,22 @@ public class AvanzarArriba extends SearchAction {
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
         this.agState = (EstadoAgente) s;
+        EstadoAgente sigEstado = (EstadoAgente) agState.clone();
         
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
+        
+        Celda c = agState.getMatrizMapa()[agState.getposActual().getFila()][agState.getposActual().getColumna()];
+        
+        if(c.getArriba()) {
+        	System.out.println("ARRIBA");
+        	sigEstado.setposActual(sigEstado.getposActual().getFila()-1,sigEstado.getposActual().getColumna());
+        	System.out.println(sigEstado.toString());
+        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
+        	return sigEstado;
+        }
+        
         
         return null;
     }
@@ -42,8 +54,8 @@ public class AvanzarArriba extends SearchAction {
             
             
             // Update the agent state
-        	agState.setposActual(agState.getposActual().getFila()+1,agState.getposActual().getColumna());
-        	agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
+        	agState.setposActual(agState.getposActual().getFila()-1,agState.getposActual().getColumna());
+        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
             
             
         	// Update the real world

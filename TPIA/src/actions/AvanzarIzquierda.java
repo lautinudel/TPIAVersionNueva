@@ -16,10 +16,21 @@ public class AvanzarIzquierda extends SearchAction {
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
         this.agState = (EstadoAgente) s;
-        
+        EstadoAgente sigEstado = (EstadoAgente) agState.clone();
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
+        
+        Celda c = agState.getMatrizMapa()[agState.getposActual().getFila()][agState.getposActual().getColumna()];
+        if (c.getIzquierda()) {
+        	System.out.println("IZQUIERDA");
+        	agState.setposActual(sigEstado.getposActual().getFila(),sigEstado.getposActual().getColumna()-1);
+        	System.out.println(sigEstado.toString());
+        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
+            return sigEstado;
+        	
+        }
+        
         
         return null;
     }
@@ -43,7 +54,7 @@ public class AvanzarIzquierda extends SearchAction {
             
             // Update the agent state
         	agState.setposActual(agState.getposActual().getFila(),agState.getposActual().getColumna()-1);
-        	agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
+        	//agState.setCostoAcumulado(agState.getCostoAcumulado()+Integer.parseInt((this.getCost()).toString()));
             
             
         	// Update the real world

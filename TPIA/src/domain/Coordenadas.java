@@ -37,8 +37,10 @@ public class Coordenadas {
 	}
 	
 	public Coordenadas clone() {
-		Coordenadas aux = new Coordenadas(this.fila,this.columna);
-		return aux;
+		int fila = this.getFila();
+		int columna = this.getColumna();
+		return new Coordenadas(fila,columna);
+		
 	}
 
 }

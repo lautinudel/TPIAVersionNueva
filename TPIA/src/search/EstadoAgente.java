@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import domain.Celda;
 import domain.Coordenadas;
 import domain.Producto;
 import domain.Supermercado;
@@ -24,18 +25,18 @@ public class EstadoAgente extends SearchBasedAgentState {
     private ArrayList<Supermercado> supermercadosDisponibles;
     private int costoAcumulado;
     private TipoVehiculo tipoVehiculo;
-	
-
-    public EstadoAgente() {
+    /*private Celda[][] matrizMapa = 
+    	{{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
+    	{new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (true,true,false,false)},
+    	{new Celda (true,false,false,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (true,false,true,false)}};
+	*/
     
-    	//TODO: Complete Method
-    	
-			 posActual = new Coordenadas();
-			// listaProductos = new ArrayList<String>();
-			 supermercadosDisponibles = new ArrayList<Supermercado>();
-			 costoAcumulado=0;
-			 tipoVehiculo = TipoVehiculo.AUTO;
-			
+    private Celda[][] matrizMapa = 
+    	{{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
+    	{new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,false)},
+    	{new Celda (true,false,false,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false)}};
+
+    public EstadoAgente() {	
       
         this.initState();
     }
@@ -51,6 +52,8 @@ public class EstadoAgente extends SearchBasedAgentState {
     	
     	newState.setposActual(this.posActual.clone());
     	
+    	
+    	
     	ArrayList<String> newListaProductos = new ArrayList<String>();
     	for(String s : this.getlistaProductos()) {
     		String aux = s;
@@ -65,6 +68,14 @@ public class EstadoAgente extends SearchBasedAgentState {
     	}
     	newState.setSupermercadosDisponibles(newSupermercadosDisponibles);
     	
+    	Celda[][] newMatrizMapa=this.matrizMapa;
+    	for(int i=0;i<this.getMatrizMapa().length;i++) {
+    		for(int j=0;j<this.getMatrizMapa()[i].length;j++) {
+    			newMatrizMapa[i][j]=this.matrizMapa[i][j];
+    		}
+    	}
+    	newState.setMatrizMapa(newMatrizMapa);
+    	
     	
     	/*int[][] newMatrizCostosP = {{0,0,0,0,0,0,0,0,0},
     			{0,0,0,0,0,0,0,0,0},
@@ -75,6 +86,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     		}
     	}
     	newState.setmatrizCostosP(newMatrizCostosP);*/
+    	
     	
     	newState.setCostoAcumulado(this.getCostoAcumulado());
     	
@@ -95,9 +107,11 @@ public class EstadoAgente extends SearchBasedAgentState {
     @Override
     public void updateState(Perception p) {
         
-        //TODO: Complete Method
+        //LEER LA CELDA Y ACTUALIZAR DONDE ESTA PARADO
     	
-    	AgentedeComprasPerception percepcion = (AgentedeComprasPerception) p;
+    	//TODO: Complete Method
+    	
+    	/*AgentedeComprasPerception percepcion = (AgentedeComprasPerception) p;
     	
     	boolean esSupermercado = percepcion.getEsSupermercado();
     	
@@ -116,12 +130,14 @@ public class EstadoAgente extends SearchBasedAgentState {
         	auxProductos.addAll(this.getlistaProductos());
     		for(String s: this.getlistaProductos()) {
     			for(Producto prod : superActual.getProductosDisponibles()) {
-    				if(s.equals(prod.getNombre())) auxProductos.remove(s);
+    				if(s.equals(prod.getNombre())){
+    				 auxProductos.remove(s);
+    				}
     			}
     		}
     	}else {
     		//se sigue moviendo
-    	}
+    	}*/
     	
     	
     }
@@ -132,9 +148,43 @@ public class EstadoAgente extends SearchBasedAgentState {
     @Override
     public void initState() {
         
-	//TODO: Complete Method
+    	//ESTADO INICIAL DEL AGENTE
     	
-    	//INICIALIZAR EL ESTADO DEL AGENTE
+    	//POSACTUAL
+    	posActual = new Coordenadas(0,0);
+    	//PRODUCTOS A COMPRAR
+    	listaProductos = new ArrayList<String>();
+    	listaProductos.add("P2"); //S1
+    	listaProductos.add("P3"); //S3
+    	listaProductos.add("P9"); //S2
+    	ArrayList<Producto> listaProd1 = new ArrayList<Producto>();
+    	listaProd1.add(new Producto("P1", 5.0));
+    	listaProd1.add(new Producto("P2", 20.0));
+    	listaProd1.add(new Producto("P4", 80.0));
+    	listaProd1.add(new Producto("P6", 40.0));
+    	//SUPERMERCADOS DISPONIBLES
+    	Supermercado S1 = new Supermercado ("S1", new Coordenadas(1,0),true, listaProd1);
+    	ArrayList<Producto> listaProd2 = new ArrayList<Producto>();
+    	listaProd2.add(new Producto("P1", 10.0));
+    	listaProd2.add(new Producto("P5", 5.0));
+    	listaProd2.add(new Producto("P6", 40.0));
+    	listaProd2.add(new Producto("P9", 35.0));
+    	Supermercado S2 = new Supermercado ("S2", new Coordenadas(1,3),true, listaProd2);
+    	ArrayList<Producto> listaProd3 = new ArrayList<Producto>();
+    	listaProd3.add(new Producto("P1", 12.0));
+    	listaProd3.add(new Producto("P3", 10.0));
+    	listaProd3.add(new Producto("P5", 15.0));
+    	listaProd3.add(new Producto("P7", 10.0));
+    	listaProd3.add(new Producto("P8", 10.0));
+    	Supermercado S3 = new Supermercado ("S3", new Coordenadas(2,2),true, listaProd3);
+    	this.supermercadosDisponibles = new ArrayList<Supermercado>();
+    	this.supermercadosDisponibles.add(S1);
+    	this.supermercadosDisponibles.add(S2);
+    	this.supermercadosDisponibles.add(S3);
+    	//COSTO TOTAL ACUMULADO
+		costoAcumulado=0;
+		//TIPO DE VEHICULO
+		tipoVehiculo = TipoVehiculo.AUTO;
 
     }
 
@@ -145,8 +195,8 @@ public class EstadoAgente extends SearchBasedAgentState {
     public String toString() {
         String str = "";
 
-        //TODO: Complete Method
-
+        str+="Posicion ("+this.posActual.getFila()+","+this.posActual.getColumna()+")\n";
+        str+="Cantidad de productos a comprar "+this.listaProductos.size();
         return str;
     }
 
@@ -174,10 +224,10 @@ public class EstadoAgente extends SearchBasedAgentState {
     				mismosProductos = false;
     	}
     	boolean mismoTipoVehiculo = this.gettipoVehiculo() == e.gettipoVehiculo();
-    	boolean mismoCostoAcumulado = this.getCostoAcumulado() == e.getCostoAcumulado();
+    	boolean mismoCostoAcumulado = true;//this.getCostoAcumulado() == e.getCostoAcumulado();
     	
     	boolean mismosSupermercados = true;
-    	mismosSupermercados = this.getSupermercadosDisponibles().size() == e.getSupermercadosDisponibles().size();
+    	/*mismosSupermercados = this.getSupermercadosDisponibles().size() == e.getSupermercadosDisponibles().size();
     	if(mismosSupermercados) {
     		String[] nombresActuales = getArrayOfNamesSuper(this.getSupermercadosDisponibles());
     		String[] nobresComparadas = getArrayOfNamesSuper(e.getSupermercadosDisponibles());
@@ -186,8 +236,16 @@ public class EstadoAgente extends SearchBasedAgentState {
     		for(int i=0;i<nombresActuales.length;i++)
     			if(!(nombresActuales[i].equals(nobresComparadas[i])))
     				mismosSupermercados = false;
-    	}
+    	}*/
     	
+    	
+    	
+    	//VERIFICAR SI LA MATRIZ MAPA ES LA MISMA
+    	
+    	
+    	
+    	
+    	//System.out.println("MISMO ESTADO: "+mismaPosicion+" "+ mismoTipoVehiculo +" "+ mismoCostoAcumulado +" "+ mismosProductos +" "+ mismosSupermercados);
     	return (mismaPosicion && mismoTipoVehiculo && mismoCostoAcumulado && mismosProductos && mismosSupermercados);
        
         
@@ -215,7 +273,7 @@ public class EstadoAgente extends SearchBasedAgentState {
         return listaProductos;
      }
      public void setlistaProductos(ArrayList<String> arg){
-        listaProductos = arg;
+        this.listaProductos = arg;
      }
      /*public int[][] getmatrizCostosP(){
         return matrizCostosP;
@@ -259,7 +317,15 @@ public class EstadoAgente extends SearchBasedAgentState {
 	   		 arrayOfNames[i] = supermercados.get(i).getNombre();
 	   	 
 	   	 return arrayOfNames;
-	    } 
+	    }
+
+	public Celda[][] getMatrizMapa() {
+		return matrizMapa;
+	}
+
+	public void setMatrizMapa(Celda[][] matrizMapa) {
+		this.matrizMapa = matrizMapa;
+	} 
 	
 	
 	
