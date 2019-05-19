@@ -20,7 +20,6 @@ public class Comprar extends SearchAction {
      */
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState state) {
-    	costo=0.0;
     	this.agState = (EstadoAgente) state;
         EstadoAgente sigEstado = (EstadoAgente) agState.clone();
         boolean esSupermercado = false;
@@ -39,23 +38,25 @@ public class Comprar extends SearchAction {
     		Supermercado superActual=null;
     		//veo en que super estoy
     		for(Supermercado sup : sigEstado.getSupermercadosDisponibles()) {
-    			if(sup.getUbicacion().equals(sigEstado.getposActual()))
+    			if(sup.getUbicacion().equals(agState.getposActual()))
     				superActual = sup;
     		}
     		//System.out.println("ENTRO AL SUPER: "+superActual.getNombre());
     		ArrayList<String> auxProductos = new ArrayList<String>();
-        	auxProductos.addAll(sigEstado.getlistaProductos());
+        	auxProductos.addAll(agState.getlistaProductos());
         	
-    		for(String s: sigEstado.getlistaProductos()) {  
+    		for(String s: agState.getlistaProductos()) {  
     			for(Producto prod : superActual.getProductosDisponibles()) {
     				if(s.equals(prod.getNombre())) { 
     					auxProductos.remove(s);
     					this.costo += prod.getPrecio();
-    						
+    					
+    					
+    					
     				}
     			}
     		}
-    		 		
+    		   		
     		sigEstado.setlistaProductos(auxProductos);
     		
     		//System.out.println("Agente viejo: "+agState);
@@ -73,7 +74,6 @@ public class Comprar extends SearchAction {
      */
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-    	costo=0.0;
         EstadoAmbiente environmentState = (EstadoAmbiente) est;
         EstadoAgente agState = ((EstadoAgente) ast);
         boolean esSupermercado = false;
@@ -107,7 +107,7 @@ public class Comprar extends SearchAction {
     					}
     				}
     		}
-    			
+    		   		
     		agState.setlistaProductos(auxProductos);
         }
         return environmentState;
@@ -122,7 +122,7 @@ public class Comprar extends SearchAction {
     	switch(this.agState.getCriterioDeAhorro()) {
     	case DINERO:cost= this.costo;
     		break;
-    	case TIEMPO:cost=1800.0;
+    	case TIEMPO:cost= this.costo+1800.0;
     		break;
     	case AMBOS:cost= this.costo/5.0;
     		break;
