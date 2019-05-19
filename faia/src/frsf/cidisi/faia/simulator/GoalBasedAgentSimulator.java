@@ -87,13 +87,18 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             
             String s = agent.getAgentState().toString();
             String[] parts = s.split("Cantidad");
+            String[]parts2 = parts[1].split("Factor");
             
             
             
-            ventana.setLblprodacomprar("Cantidad" + parts[1]);
+            ventana.setLblprodacomprar("Cantidad" + parts2[0]);
             System.out.println("Environment: " + environment);
             
-            ventana.setLblposagente(environment.getEnvironmentState().toString() + "\n");
+            
+            String q = environment.getEnvironmentState().toString();
+            String[] partsq = q.split("}");
+            
+            ventana.setLblposagente(partsq[0] + "\n");
             
             System.out.println("Asking the agent for an action...");
             action = agent.selectAction();

@@ -7,9 +7,11 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -28,6 +30,7 @@ public class Ventana extends JFrame implements ActionListener {
     private JLabel lblaccion;           // etiqueta o texto no editable
     private JTextField caja;        // caja de texto, para insertar datos
     private JButton boton;          // boton con una determinada accion
+    private JList listaposiciones;
 
     public Ventana() {
         super();                    // usamos el contructor de la clase padre JFrame
@@ -44,17 +47,31 @@ public class Ventana extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // hacemos que cuando se cierre la ventana termina todo proceso
     }
 
-    private void inicializarComponentes() {
+    public JList getListaposiciones() {
+		return listaposiciones;
+	}
+
+	public void s(String listaposiciones) {
+		this.listaposiciones.;
+	}
+
+	private void inicializarComponentes() {
        
     	// creamos los componentes
         txtposagente = new JLabel();
         txtprodacomprar = new JLabel();
-        //txtpossupermer = new JLabel();
         lblposagente = new JLabel();
         lblprodacomprar = new JLabel();
         lblpossupermer = new JLabel();
         lblreachedgoal = new JLabel(); 
         lblaccion = new JLabel();
+        //DefaultListModel<String> listposiciones = new DefaultListModel<>();
+        
+        DefaultListModel model= new DefaultListModel();
+        listaposiciones = new JList(model);
+        listaposiciones.setVisible(true);
+        model.addElement("hola");
+        model.addElement("caca");
         
         caja = new JTextField();
         boton = new JButton();
@@ -64,9 +81,6 @@ public class Ventana extends JFrame implements ActionListener {
         txtposagente.setBounds(50, 50, 200, 25);   // colocamos posicion y tamanio al texto (x, y, ancho, alto)
         txtprodacomprar.setText("Productos a comprar");    // colocamos un texto a la etiqueta
         txtprodacomprar.setBounds(50, 100, 200, 25);   // colocamos posicion y tamanio al texto (x, y, ancho, alto)
-        //txtpossupermer.setText("Posicion de los supermercados");    // colocamos un texto a la etiqueta
-        //txtpossupermer.setBounds(50, 150, 200, 25);   // colocamos posicion y tamanio al texto (x, y, ancho, alto)
-        
         lblposagente.setText("");    // colocamos un texto a la etiqueta
         lblposagente.setBounds(50, 70, 500, 25);   // colocamos posicion y tamanio al texto (x, y, ancho, alto)
         lblprodacomprar.setText("");    // colocamos un texto a la etiqueta
@@ -77,6 +91,9 @@ public class Ventana extends JFrame implements ActionListener {
         lblreachedgoal.setBounds(50, 200, 200, 25);   // colocamos posicion y tamanio al texto (x, y, ancho, alto)
         lblaccion.setText("");    // colocamos un texto a la etiqueta
         lblaccion.setBounds(50, 150, 200, 25);   // colocamos posicion y tamanio al texto (x, y, ancho, alto)
+        listaposiciones.setBounds(50, 50, 200, 200);
+        
+        
         
         caja.setBounds(150, 50, 100, 25);   // colocamos posicion y tamanio a la caja (x, y, ancho, alto)
         boton.setText("Avanzar");   // colocamos un texto al boton
@@ -84,10 +101,11 @@ public class Ventana extends JFrame implements ActionListener {
         boton.addActionListener(this);      // hacemos que el boton tenga una accion y esa accion estara en esta clase
         
         // adicionamos los componentes a la ventana
-        this.add(txtposagente);
+        //this.add(txtposagente);
         this.add(txtprodacomprar);
         //this.add(txtpossupermer);
         this.add(lblposagente);
+        //this.add(listaposiciones);
         this.add(lblprodacomprar);
         this.add(lblaccion);
         this.add(lblpossupermer);

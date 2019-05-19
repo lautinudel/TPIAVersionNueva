@@ -50,4 +50,6 @@ public abstract class GoalBasedAgent extends Agent {
     protected void setAgentState(AgentState agentState) {
         this.state = agentState;
     }
+    
+    
 }
