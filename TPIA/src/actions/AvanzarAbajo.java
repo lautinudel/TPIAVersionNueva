@@ -90,6 +90,7 @@ public class AvanzarAbajo extends SearchAction {
             	costo = 1.0;
             	break;   	      
             }
+    		costo = costo * this.agState.getFactorDeAumento();
     		break;
     	case TIEMPO://EN SEGUNDOS
     		switch(this.agState.gettipoVehiculo()){
@@ -122,6 +123,7 @@ public class AvanzarAbajo extends SearchAction {
             	costo = 4.0;
             	break;   	      
             }
+    		costo = costo * this.agState.getFactorDeAumento();
     		break;
     	}
     	

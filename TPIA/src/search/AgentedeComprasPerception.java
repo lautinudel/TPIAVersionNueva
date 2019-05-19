@@ -16,11 +16,13 @@ public class AgentedeComprasPerception extends Perception {
 	//Setup sensors
 	private Celda estadoCelda;
 	private ArrayList<Supermercado> supermercadosDisponibles;
+	private Double factorDeAumento;
 
     public  AgentedeComprasPerception() {
     	UNKNOWN_PERCEPTION = new Celda(false,false,false,false);
     	estadoCelda = UNKNOWN_PERCEPTION;
     	supermercadosDisponibles = new ArrayList<Supermercado>();
+    	//factorDeAumento = 1.0;
     }
 
     public AgentedeComprasPerception(Agent agent, Environment environment) {
@@ -38,15 +40,12 @@ public class AgentedeComprasPerception extends Perception {
         EstadoAmbiente environmentState = environment.getEnvironmentState();
         
         //Aquí creamos la percepción inicial del agente
-        //Pimero chequeamos que la ubicación inicial no sea la de un supermercado
+        
         
         Coordenadas posAgente = environmentState.getposAgente();
-        
         estadoCelda = environmentState.getmatrizMapa()[posAgente.getFila()][posAgente.getColumna()];
         supermercadosDisponibles = environmentState.getListaDeSupermercados();
-        /*for(Supermercado s : environmentState.getListaDeSupermercados()) {
-        	if(posAgente.equals(s.getUbicacion())) esSupermercado=true;
-        }*/
+        factorDeAumento=environmentState.getFactorDeAumento();
         
         
     }
@@ -62,6 +61,7 @@ public class AgentedeComprasPerception extends Perception {
         str+= " Derecha: "+estadoCelda.getDerecha();
         str+= " Izquierda: "+estadoCelda.getIzquierda();
         str+= " Supermercados disponibles: "+getSupermercadosDisponibles().size();
+        str+=" Factor de Aumento: "+this.getFactorDeAumento();
        /* str += "Estoy en un supermercado: ";
         str+=(esSupermercado==true)?"Si":"No";*/
 
@@ -86,5 +86,15 @@ public class AgentedeComprasPerception extends Perception {
      public void setestadoCelda(Celda arg){
         this.estadoCelda = arg;
      }
+
+	public Double getFactorDeAumento() {
+		return factorDeAumento;
+	}
+
+	public void setFactorDeAumento(Double factorDeAumento) {
+		this.factorDeAumento = factorDeAumento;
+	}
+     
+     
    
 }

@@ -27,8 +27,9 @@ public class EstadoAgente extends SearchBasedAgentState {
     //private Double costoAcumulado;
     private TipoVehiculo tipoVehiculo;
     private CriterioDeAhorro criterioDeAhorro;
+    private Double factorDeAumento;
     //Matriz hasta Castelli
-    private Celda[][] matrizMapa = 
+    /*private Celda[][] matrizMapa = 
     {{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
     {new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (true,true,false,false)},
     {new Celda (true,true,false,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (true,true,true,false)},
@@ -40,7 +41,12 @@ public class EstadoAgente extends SearchBasedAgentState {
     {new Celda (true,true,false,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (true,true,true,false)},
     {new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (true,true,false,false)},
     {new Celda (true,false,false,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false, true,false), new Celda (true,false,true,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (true,false,true,false)}
-    };
+    };*/
+    //matriz de ejemplo
+    private Celda[][] matrizMapa = 
+    	{{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
+    	{new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,false)},
+    	{new Celda (true,false,false,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false)}};
     /*private Celda[][] matrizMapa = 
     	{{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
     	{new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (true,true,false,false)},
@@ -113,6 +119,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     	CriterioDeAhorro cda = this.getCriterioDeAhorro();
     	newState.setCriterioDeAhorro(cda);
     	
+    	newState.setFactorDeAumento(this.getFactorDeAumento());
     	
         return newState;
     }
@@ -134,7 +141,8 @@ public class EstadoAgente extends SearchBasedAgentState {
     		this.matrizMapa[this.posActual.getFila()][this.posActual.getColumna()] = c;
     	}
     	this.setSupermercadosDisponibles(percepcion.getSupermercadosDisponibles()); //actualizo mi lista de supermercados
-    	
+    	if(this.factorDeAumento != percepcion.getFactorDeAumento())
+    		this.factorDeAumento = percepcion.getFactorDeAumento();
     }
 
     /**
@@ -146,17 +154,17 @@ public class EstadoAgente extends SearchBasedAgentState {
     	//ESTADO INICIAL DEL AGENTE
     	
     	//POSACTUAL
-    	posActual = new Coordenadas(10,3);
+    	posActual = new Coordenadas(0,0);
     	//PRODUCTOS A COMPRAR
     	listaProductos = new ArrayList<String>();
-    	listaProductos.add("P1"); 
+    	//listaProductos.add("P1"); 
     	listaProductos.add("P2"); 
     	listaProductos.add("P3"); 
-    	listaProductos.add("P4"); 
-    	listaProductos.add("P5");
-    	listaProductos.add("P6");
-    	listaProductos.add("P7");
-    	listaProductos.add("P8");
+    	//listaProductos.add("P4"); 
+    	//listaProductos.add("P5");
+    	//listaProductos.add("P6");
+    	//listaProductos.add("P7");
+    	//listaProductos.add("P8");
     	listaProductos.add("P9"); 
 		//SUPERMERCADOS DISPONIBLES
     	ArrayList<Producto> listaProd1 = new ArrayList<Producto>();
@@ -170,15 +178,15 @@ public class EstadoAgente extends SearchBasedAgentState {
     	listaProd2.add(new Producto("P2", 10.0));
     	listaProd2.add(new Producto("P5", 5.0));
     	listaProd2.add(new Producto("P6", 40.0));
-    	listaProd2.add(new Producto("P9", 35.0));
-    	Supermercado S2 = new Supermercado ("S2", new Coordenadas(9,0),true, listaProd2);
+    	listaProd2.add(new Producto("P10", 35.0));
+    	Supermercado S2 = new Supermercado ("S2", new Coordenadas(1,3),true, listaProd2);
     	ArrayList<Producto> listaProd3 = new ArrayList<Producto>();
     	listaProd3.add(new Producto("P1", 12.0));
     	listaProd3.add(new Producto("P3", 10.0));
     	listaProd3.add(new Producto("P5", 15.0));
     	listaProd3.add(new Producto("P7", 10.0));
     	listaProd3.add(new Producto("P8", 10.0));
-    	Supermercado S3 = new Supermercado ("S3", new Coordenadas(10,4),true, listaProd3);
+    	Supermercado S3 = new Supermercado ("S3", new Coordenadas(2,2),true, listaProd3);
     	this.supermercadosDisponibles = new ArrayList<Supermercado>();
     	this.supermercadosDisponibles.add(S1);
     	this.supermercadosDisponibles.add(S2);
@@ -187,7 +195,8 @@ public class EstadoAgente extends SearchBasedAgentState {
 		tipoVehiculo = TipoVehiculo.AUTO;
 		//CRITERIO DE AHORRO
 		criterioDeAhorro = CriterioDeAhorro.DINERO;
-
+		//FACTOR DE AUMENTO
+		factorDeAumento=1.0;
     }
 
     /**
@@ -199,6 +208,7 @@ public class EstadoAgente extends SearchBasedAgentState {
 
         str+="Posicion ("+this.posActual.getFila()+","+this.posActual.getColumna()+")\n";
         str+="Cantidad de productos a comprar "+this.listaProductos.size();
+        str+=" Factor de aumento: "+this.getFactorDeAumento();
         //str+=" Costo acumulado: "+this.getCostoAcumulado();
         return str;
     }
@@ -253,12 +263,12 @@ public class EstadoAgente extends SearchBasedAgentState {
     	}
     	
     	boolean mismoCriterio = this.getCriterioDeAhorro() == e.getCriterioDeAhorro();
-    	
+    	boolean mismoFactorDeAumento = this.factorDeAumento == e.getFactorDeAumento();
     	
     	
     	
     	//System.out.println("MISMO ESTADO: "+mismaPosicion+" "+ mismoTipoVehiculo +" "+ mismoCostoAcumulado +" "+ mismosProductos +" "+ mismosSupermercados);
-    	return (mismaPosicion && mismoTipoVehiculo && /*mismoCostoAcumulado &&*/ mismosProductos && mismosSupermercados && mismoMapa && mismoCriterio);
+    	return (mismaPosicion && mismoTipoVehiculo && /*mismoCostoAcumulado &&*/ mismosProductos && mismosSupermercados && mismoMapa && mismoCriterio && mismoFactorDeAumento );
        
         
     	
@@ -345,6 +355,14 @@ public class EstadoAgente extends SearchBasedAgentState {
 
 	public void setCriterioDeAhorro(CriterioDeAhorro criterioDeAhorro) {
 		this.criterioDeAhorro = criterioDeAhorro;
+	}
+
+	public Double getFactorDeAumento() {
+		return factorDeAumento;
+	}
+
+	public void setFactorDeAumento(Double factorDeAumento) {
+		this.factorDeAumento = factorDeAumento;
 	} 
 	
 	
