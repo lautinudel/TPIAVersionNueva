@@ -15,6 +15,7 @@ public class EstadoAmbiente extends EnvironmentState {
 	
 	
     private Coordenadas posAgente;
+    private double factorDeAumento;
     //Matriz hasta Castelli
     /*private Celda[][] matrizMapa = 
     {{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
@@ -36,7 +37,7 @@ public class EstadoAmbiente extends EnvironmentState {
     	{new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,false)},
     	{new Celda (true,false,false,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false)}};
     private ArrayList <Supermercado> listaDeSupermercados;
-	private Double factorDeAumento;
+	
     public EstadoAmbiente() {
 			 posAgente = new Coordenadas();
 			 listaDeSupermercados = new ArrayList <Supermercado>();
@@ -54,6 +55,8 @@ public class EstadoAmbiente extends EnvironmentState {
 
     	//POSACTUAL
     	posAgente = new Coordenadas(0,0);
+    	//FACTOR DE AUMENTO
+    	this.factorDeAumento=2.0;
     	ArrayList<Producto> listaProd1 = new ArrayList<Producto>();
     	listaProd1.add(new Producto("P1", 5.0));
     	listaProd1.add(new Producto("P2", 15.0));
@@ -79,8 +82,7 @@ public class EstadoAmbiente extends EnvironmentState {
     	this.listaDeSupermercados.add(S1);
     	this.listaDeSupermercados.add(S2);
     	this.listaDeSupermercados.add(S3);
-    	//FACTOR DE AUMENTO
-    	this.factorDeAumento=3.0;
+    	
     }
 
     /**
@@ -119,11 +121,11 @@ public class EstadoAmbiente extends EnvironmentState {
  		this.listaDeSupermercados = listaDeSupermercados;
  	 }
 
-	public Double getFactorDeAumento() {
+	public double getFactorDeAumento() {
 		return factorDeAumento;
 	}
 
-	public void setFactorDeAumento(Double factorDeAumento) {
+	public void setFactorDeAumento(double factorDeAumento) {
 		this.factorDeAumento = factorDeAumento;
 	}
 	

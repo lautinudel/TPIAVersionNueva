@@ -20,14 +20,11 @@ public class EstadoAgente extends SearchBasedAgentState {
 	
     private Coordenadas posActual;
     private ArrayList<String> listaProductos;
-    /*private int[][] matrizCostosP = {{5,20,-1,80,-1,40,-1,-1,-1},
-	 									{10,-1,-1,-1,5,40,-1,-1,35},
-	 									{12,-1,10,-1,15,-1,10,10,-1}};*/
     private ArrayList<Supermercado> supermercadosDisponibles;
     //private Double costoAcumulado;
     private TipoVehiculo tipoVehiculo;
     private CriterioDeAhorro criterioDeAhorro;
-    private Double factorDeAumento;
+    private double factorDeAumento;
     //Matriz hasta Castelli
     /*private Celda[][] matrizMapa = 
     {{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
@@ -98,18 +95,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     		}
     	}
     	newState.setMatrizMapa(newMatrizMapa);
-    	
-    	
-    	/*int[][] newMatrizCostosP = {{0,0,0,0,0,0,0,0,0},
-    			{0,0,0,0,0,0,0,0,0},
-    			{0,0,0,0,0,0,0,0,0}};
-    	for(int i=0;i<this.getmatrizCostosP().length;i++) {
-    		for(int j=0; j<this.getmatrizCostosP()[i].length;j++) {
-    			newMatrizCostosP[i][j]=matrizCostosP[i][j];
-    		}
-    	}
-    	newState.setmatrizCostosP(newMatrizCostosP);*/
-    	
+
     	
     	//newState.setCostoAcumulado(this.getCostoAcumulado());
     	
@@ -135,14 +121,14 @@ public class EstadoAgente extends SearchBasedAgentState {
     	
     	AgentedeComprasPerception percepcion = (AgentedeComprasPerception) p;
     	Celda c = percepcion.getestadocelda();
+    	double f = percepcion.getFactorDeAumento();
     	
     	
     	if(!this.matrizMapa[this.posActual.getFila()][this.posActual.getColumna()].equals(c)) { //si la celda en la que estoy parado no es igual a la del ambiente actualizo
     		this.matrizMapa[this.posActual.getFila()][this.posActual.getColumna()] = c;
     	}
     	this.setSupermercadosDisponibles(percepcion.getSupermercadosDisponibles()); //actualizo mi lista de supermercados
-    	if(this.factorDeAumento != percepcion.getFactorDeAumento())
-    		this.factorDeAumento = percepcion.getFactorDeAumento();
+    	this.factorDeAumento=f;
     }
 
     /**
@@ -357,11 +343,11 @@ public class EstadoAgente extends SearchBasedAgentState {
 		this.criterioDeAhorro = criterioDeAhorro;
 	}
 
-	public Double getFactorDeAumento() {
+	public double getFactorDeAumento() {
 		return factorDeAumento;
 	}
 
-	public void setFactorDeAumento(Double factorDeAumento) {
+	public void setFactorDeAumento(double factorDeAumento) {
 		this.factorDeAumento = factorDeAumento;
 	} 
 	

@@ -16,7 +16,7 @@ public class AgentedeComprasPerception extends Perception {
 	//Setup sensors
 	private Celda estadoCelda;
 	private ArrayList<Supermercado> supermercadosDisponibles;
-	private Double factorDeAumento;
+	private double factorDeAumento;
 
     public  AgentedeComprasPerception() {
     	UNKNOWN_PERCEPTION = new Celda(false,false,false,false);
@@ -41,11 +41,11 @@ public class AgentedeComprasPerception extends Perception {
         
         //Aquí creamos la percepción inicial del agente
         
-        
+       
+        this.factorDeAumento=environmentState.getFactorDeAumento();
         Coordenadas posAgente = environmentState.getposAgente();
         estadoCelda = environmentState.getmatrizMapa()[posAgente.getFila()][posAgente.getColumna()];
         supermercadosDisponibles = environmentState.getListaDeSupermercados();
-        factorDeAumento=environmentState.getFactorDeAumento();
         
         
     }
@@ -87,11 +87,11 @@ public class AgentedeComprasPerception extends Perception {
         this.estadoCelda = arg;
      }
 
-	public Double getFactorDeAumento() {
+	public double getFactorDeAumento() {
 		return factorDeAumento;
 	}
 
-	public void setFactorDeAumento(Double factorDeAumento) {
+	public void setFactorDeAumento(double factorDeAumento) {
 		this.factorDeAumento = factorDeAumento;
 	}
      
