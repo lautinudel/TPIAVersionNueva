@@ -192,8 +192,8 @@ public class EstadoAgente extends SearchBasedAgentState {
     public String toString() {
         String str = "";
 
-        str+="Posicion ("+this.posActual.getFila()+","+this.posActual.getColumna()+")\n";
-        str+="Cantidad de productos a comprar "+this.listaProductos.size();
+        str+="Posicion ("+this.posActual.getFila()+","+this.posActual.getColumna()+")";
+        str+=" Cantidad de productos a comprar "+this.listaProductos.size();
         str+=" Factor de aumento: "+this.getFactorDeAumento();
         //str+=" Costo acumulado: "+this.getCostoAcumulado();
         return str;

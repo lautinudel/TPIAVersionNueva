@@ -26,9 +26,15 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.simulator.events.EventType;
 import frsf.cidisi.faia.simulator.events.SimulatorEventNotifier;
+import gui.Ventana;
+
+
 
 public abstract class GoalBasedAgentSimulator extends Simulator {
-
+	
+	
+	Ventana ventana = new Ventana();
+	public Boolean paused = true;
     /**
      * 
      * @param environment
@@ -37,7 +43,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         super(environment, agents);
     }
 
-    public GoalBasedAgentSimulator(Environment environment, Agent agent) {
+	public GoalBasedAgentSimulator(Environment environment, Agent agent) {
         Vector<Agent> ags = new Vector<Agent>();
         ags.add(agent);
 
@@ -47,7 +53,8 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
 
     @Override
     public void start() {
-
+    	ventana.setVisible(true);
+    	
         System.out.println("----------------------------------------------------");
         System.out.println("--- " + this.getSimulatorName() + " ---");
         System.out.println("----------------------------------------------------");
@@ -75,8 +82,19 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             System.out.println("Perception: " + perception);
 
             System.out.println("Agent State: " + agent.getAgentState());
+           
+            //EstadoAgente e = (EstadoAgente) agent.getAgentState();
+            
+            String s = agent.getAgentState().toString();
+            String[] parts = s.split("Cantidad");
+            
+            
+            
+            ventana.setLblprodacomprar("Cantidad" + parts[1]);
             System.out.println("Environment: " + environment);
-
+            
+            ventana.setLblposagente(environment.getEnvironmentState().toString() + "\n");
+            
             System.out.println("Asking the agent for an action...");
             action = agent.selectAction();
 
@@ -84,17 +102,29 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
                 break;
             }
 
+            ventana.setLblaccion("Accion realizada: " + action);
             System.out.println("Action returned: " + action);
             System.out.println();
 
             this.actionReturned(agent, action);
-
+            
+            try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
         } while (!this.agentSucceeded(action) && !this.agentFailed(action));
 
         // Check what happened, if agent has reached the goal or not.
         if (this.agentSucceeded(action)) {
-            System.out.println("Agent has reached the goal!");
+            ventana.setColorElblreachedgoal();
+        	ventana.setLblreachedgoal("Agent has reached the goal!");
+        	System.out.println("Agent has reached the goal!");
         } else {
+        	ventana.setColorFlblreachedgoal();
+        	ventana.setLblreachedgoal("ERROR: The simulation has finished, but the agent has not reached his goal.");
             System.out.println("ERROR: The simulation has finished, but the agent has not reached his goal.");
         }
 

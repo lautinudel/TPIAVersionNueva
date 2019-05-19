@@ -94,7 +94,7 @@ public class EstadoAmbiente extends EnvironmentState {
 
         str += "Posición del agente: ";
         str += getposAgente().toString(); 
-        str += "}\n";
+        str += "}";
         str += "Factor de aumento: "+this.getFactorDeAumento();
 
         return str;
