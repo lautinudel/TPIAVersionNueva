@@ -91,14 +91,15 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             
             
             
-            ventana.setLblprodacomprar("Cantidad" + parts2[0]);
+            ventana.setjLabel3("Cantidad" + parts2[0]);
             System.out.println("Environment: " + environment);
             
             
             String q = environment.getEnvironmentState().toString();
             String[] partsq = q.split("}");
             
-            ventana.setLblposagente(partsq[0] + "\n");
+            
+            ventana.setjList1(partsq[0] + "\n");
             
             System.out.println("Asking the agent for an action...");
             action = agent.selectAction();
@@ -107,7 +108,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
                 break;
             }
 
-            ventana.setLblaccion("Accion realizada: " + action);
+            ventana.setjList2("Accion realizada: " + action);
             System.out.println("Action returned: " + action);
             System.out.println();
 
@@ -124,12 +125,13 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
 
         // Check what happened, if agent has reached the goal or not.
         if (this.agentSucceeded(action)) {
-            ventana.setColorElblreachedgoal();
-        	ventana.setLblreachedgoal("Agent has reached the goal!");
+            //ventana.setColorElblreachedgoal();
+        	//ventana.setLblreachedgoal("Agent has reached the goal!");
+        	ventana.setjLabel4Visible();
         	System.out.println("Agent has reached the goal!");
         } else {
-        	ventana.setColorFlblreachedgoal();
-        	ventana.setLblreachedgoal("ERROR: The simulation has finished, but the agent has not reached his goal.");
+        	//ventana.setColorFlblreachedgoal();
+        	//ventana.setLblreachedgoal("ERROR: The simulation has finished, but the agent has not reached his goal.");
             System.out.println("ERROR: The simulation has finished, but the agent has not reached his goal.");
         }
 
