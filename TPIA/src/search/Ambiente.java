@@ -35,20 +35,7 @@ public class Ambiente extends Environment {
          //boolean esSupermercado = false;
          Coordenadas posAgente = this.getEnvironmentState().getposAgente();
          double factorDeAumento = this.getEnvironmentState().getFactorDeAumento();
-         
-        /* for(Supermercado s : this.getEnvironmentState().getListaDeSupermercados()) {
-=======
-         /*for(Supermercado s : this.getEnvironmentState().getListaDeSupermercados()) {
->>>>>>> Stashed changes
-         	if(posAgente.equals(s.getUbicacion())) esSupermercado=true;
-         }*/
-      
-         
-         /*if(esSupermercado)
-         	perception.setEsSupermercado(true);
-         else {
-        	perception.setEsSupermercado(false);
-         }*/
+        
          perception.setestadoCelda(this.getEnvironmentState().getmatrizMapa()[posAgente.getFila()][posAgente.getColumna()]);
          perception.setSupermercadosDisponibles(this.getEnvironmentState().getListaDeSupermercados());
          perception.setFactorDeAumento(factorDeAumento);

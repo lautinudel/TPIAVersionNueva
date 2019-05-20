@@ -26,7 +26,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     private CriterioDeAhorro criterioDeAhorro;
     private double factorDeAumento;
     //Matriz hasta Castelli
-    /*private Celda[][] matrizMapa = 
+    private Celda[][] matrizMapa = 
     {{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
     {new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (true,true,false,false)},
     {new Celda (true,true,false,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (true,true,true,false)},
@@ -38,12 +38,12 @@ public class EstadoAgente extends SearchBasedAgentState {
     {new Celda (true,true,false,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (false,true,true,false), new Celda (true,false,true,false), new Celda (true,true,true,false)},
     {new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (true,true,false,false)},
     {new Celda (true,false,false,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false, true,false), new Celda (true,false,true,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (true,false,true,false)}
-    };*/
+    };
     //matriz de ejemplo
-    private Celda[][] matrizMapa = 
+    /*private Celda[][] matrizMapa = 
     	{{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
     	{new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,false)},
-    	{new Celda (true,false,false,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false)}};
+    	{new Celda (true,false,false,false), new Celda (false,false,true,false), new Celda (true,false,true,false), new Celda (false,false,true,false)}};*/
     /*private Celda[][] matrizMapa = 
     	{{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
     	{new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (true,true,false,false)},
@@ -140,13 +140,13 @@ public class EstadoAgente extends SearchBasedAgentState {
     	//ESTADO INICIAL DEL AGENTE
     	
     	//POSACTUAL
-    	posActual = new Coordenadas(0,0);
+    	posActual = new Coordenadas(10,3);
     	//PRODUCTOS A COMPRAR
     	listaProductos = new ArrayList<String>();
     	//listaProductos.add("P1"); 
     	listaProductos.add("P2"); 
     	listaProductos.add("P3"); 
-    	//listaProductos.add("P4"); 
+    	listaProductos.add("P4"); 
     	//listaProductos.add("P5");
     	//listaProductos.add("P6");
     	//listaProductos.add("P7");
@@ -154,25 +154,26 @@ public class EstadoAgente extends SearchBasedAgentState {
     	listaProductos.add("P9"); 
 		//SUPERMERCADOS DISPONIBLES
     	ArrayList<Producto> listaProd1 = new ArrayList<Producto>();
-    	listaProd1.add(new Producto("P1", 5.0));
-    	listaProd1.add(new Producto("P2", 60.0));
-    	listaProd1.add(new Producto("P4", 80.0));
-    	listaProd1.add(new Producto("P6", 40.0));
+    	listaProd1.add(new Producto("P1", 3.0));
+    	listaProd1.add(new Producto("P2", 2.0));
+    	listaProd1.add(new Producto("P3", 7.0));
+    	listaProd1.add(new Producto("P4", 1.0));
+    	listaProd1.add(new Producto("P6", 0.5));
     	Supermercado S1 = new Supermercado ("S1", new Coordenadas(1,0),true, listaProd1);
     	ArrayList<Producto> listaProd2 = new ArrayList<Producto>();
-    	listaProd2.add(new Producto("P1", 10.0));
-    	listaProd2.add(new Producto("P2", 10.0));
-    	listaProd2.add(new Producto("P5", 5.0));
-    	listaProd2.add(new Producto("P6", 40.0));
-    	listaProd2.add(new Producto("P10", 35.0));
-    	Supermercado S2 = new Supermercado ("S2", new Coordenadas(1,3),true, listaProd2);
+    	listaProd2.add(new Producto("P1", 1.0));
+    	listaProd2.add(new Producto("P2", 4.0));
+    	listaProd2.add(new Producto("P5", 6.0));
+    	listaProd2.add(new Producto("P6", 3.0));
+    	listaProd2.add(new Producto("P10", 7.0));
+    	Supermercado S2 = new Supermercado ("S2", new Coordenadas(9,0),true, listaProd2);
     	ArrayList<Producto> listaProd3 = new ArrayList<Producto>();
-    	listaProd3.add(new Producto("P1", 12.0));
-    	listaProd3.add(new Producto("P3", 10.0));
-    	listaProd3.add(new Producto("P5", 15.0));
-    	listaProd3.add(new Producto("P7", 10.0));
-    	listaProd3.add(new Producto("P8", 10.0));
-    	Supermercado S3 = new Supermercado ("S3", new Coordenadas(2,2),true, listaProd3);
+    	listaProd3.add(new Producto("P1", 2.0));
+    	listaProd3.add(new Producto("P3", 6.0));
+    	listaProd3.add(new Producto("P5", 4.0));
+    	listaProd3.add(new Producto("P7", 7.0));
+    	listaProd3.add(new Producto("P8", 3.0));
+    	Supermercado S3 = new Supermercado ("S3", new Coordenadas(10,4),true, listaProd3);
     	this.supermercadosDisponibles = new ArrayList<Supermercado>();
     	this.supermercadosDisponibles.add(S1);
     	this.supermercadosDisponibles.add(S2);
