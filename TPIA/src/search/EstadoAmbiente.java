@@ -16,7 +16,7 @@ public class EstadoAmbiente extends EnvironmentState {
 	
     private Coordenadas posAgente;
     private double factorDeAumento;
-    //Matriz hasta Castelli
+    //Matriz hasta Hernandarias
     private Celda[][] matrizMapa = 
     {{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
     {new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (true,true,false,false)},
@@ -54,9 +54,9 @@ public class EstadoAmbiente extends EnvironmentState {
     public void initState() {
 
     	//POSACTUAL
-    	posAgente = new Coordenadas(10,3);
+    	posAgente = new Coordenadas(8,5);
     	//FACTOR DE AUMENTO
-    	this.factorDeAumento=2.0;
+    	this.factorDeAumento=1.0;
     	ArrayList<Producto> listaProd1 = new ArrayList<Producto>();
     	listaProd1.add(new Producto("P1", 1.0));
     	listaProd1.add(new Producto("P2", 3.0));
@@ -67,14 +67,14 @@ public class EstadoAmbiente extends EnvironmentState {
     	Supermercado S1 = new Supermercado ("S1", new Coordenadas(1,0),true, listaProd1);
     	ArrayList<Producto> listaProd2 = new ArrayList<Producto>();
     	listaProd2.add(new Producto("P1", 8.0));
-    	listaProd2.add(new Producto("P2", 1.0));
+    	listaProd2.add(new Producto("P2", 4.0));
     	listaProd2.add(new Producto("P5", 1.0));
     	listaProd2.add(new Producto("P6", 3.0));
     	listaProd2.add(new Producto("P9", 6.0));
-    	Supermercado S2 = new Supermercado ("S2", new Coordenadas(9,0),true, listaProd2);
+    	Supermercado S2 = new Supermercado ("S2", new Coordenadas(8,0),true, listaProd2);
     	ArrayList<Producto> listaProd3 = new ArrayList<Producto>();
     	listaProd3.add(new Producto("P1", 7.0));
-    	listaProd3.add(new Producto("P3", 6.0));
+    	listaProd3.add(new Producto("P2", 2.0));
     	listaProd3.add(new Producto("P5", 2.0));
     	listaProd3.add(new Producto("P7", 1.0));
     	listaProd3.add(new Producto("P8", 3.0));

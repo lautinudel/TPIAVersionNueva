@@ -48,7 +48,7 @@ public abstract class InformedSearchStrategy extends Strategy {
     public void addNodesToExpand(Vector<NTree> nodes) {
         //Add the nodes at the top of the list of nodes to expand
         for (NTree nt : nodes) {
-            nt.setCost(nt.getParent().getCost() + g.calculateCost(nt) + h.getEstimatedCost(nt));
+            nt.setCost(/*nt.getParent().getCost() + g.calculateCost(nt) +*/ h.getEstimatedCost(nt));
         }
         nodesToExpand.addAll(nodes);
     }

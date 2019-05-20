@@ -52,9 +52,9 @@ public class AgentedeCompras extends SearchBasedAgent {
 
         // Create the search strategy
         //DepthFirstSearch strategy = new DepthFirstSearch(); //PROFUNDIDAD         
-        BreathFirstSearch strategy = new BreathFirstSearch(); //AMPLITUD
+        //BreathFirstSearch strategy = new BreathFirstSearch(); //AMPLITUD
         //UniformCostSearch strategy = new UniformCostSearch(new CostFunction()); //COSTO UNIFORME
-    	//GreedySearch strategy = new GreedySearch(new Heuristic()); //AVARA
+    	GreedySearch strategy = new GreedySearch(new Heuristic()); //AVARA
         // Create a Search object with the strategy
         Search searchSolver = new Search(strategy);
         

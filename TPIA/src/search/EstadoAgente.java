@@ -25,7 +25,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     private TipoVehiculo tipoVehiculo;
     private CriterioDeAhorro criterioDeAhorro;
     private double factorDeAumento;
-    //Matriz hasta Castelli
+    //Matriz hasta Hernandarias
     private Celda[][] matrizMapa = 
     {{new Celda (false,true,false,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false),new Celda (false,false,true,false),new Celda (false,true,true,false)},
     {new Celda (true,true,false,true), new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (false,true,false,true),new Celda (true,false,false,true),new Celda (true,true,false,false)},
@@ -140,7 +140,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     	//ESTADO INICIAL DEL AGENTE
     	
     	//POSACTUAL
-    	posActual = new Coordenadas(10,3);
+    	posActual = new Coordenadas(8,5);
     	//PRODUCTOS A COMPRAR
     	listaProductos = new ArrayList<String>();
     	//listaProductos.add("P1"); 
@@ -254,7 +254,7 @@ public class EstadoAgente extends SearchBasedAgentState {
     	
     	
     	
-    	//System.out.println("MISMO ESTADO: "+mismaPosicion+" "+ mismoTipoVehiculo +" "+ mismoCostoAcumulado +" "+ mismosProductos +" "+ mismosSupermercados);
+    	//System.out.println("MISMO ESTADO: "+mismaPosicion+" "+ mismoTipoVehiculo+" "+ mismosProductos +" "+ mismosSupermercados);
     	return (mismaPosicion && mismoTipoVehiculo && /*mismoCostoAcumulado &&*/ mismosProductos && mismosSupermercados && mismoMapa && mismoCriterio && mismoFactorDeAumento );
        
         

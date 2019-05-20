@@ -9,8 +9,6 @@ import frsf.cidisi.faia.solver.search.NTree;
  * informed search strategy, like A Star or Greedy.
  */
 public class Heuristic implements IEstimatedCostFunction {
-
-	
 	public Heuristic () {
 		
 	}
@@ -20,10 +18,8 @@ public class Heuristic implements IEstimatedCostFunction {
      */
     @Override
     public double getEstimatedCost(NTree node) {
-        EstadoAgente agState = (EstadoAgente) node.getAgentState();
-    	
+        EstadoAgente agState = (EstadoAgente) node.getAgentState();  
 		double listaProd = agState.getlistaProductos().size();
-		//double costoTotal = agState.getCostoAcumulado();
         return listaProd;
     }
 }
